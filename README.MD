@@ -92,44 +92,19 @@ npm i 或者 解压缩 node_modules.zip
   当访问 http://127.0.0.1/tech-bs/abc 时，会命中第一条代理规则，转发到 8080端口对应的路径。
   这对于并行开发多个项目很有用。
 
-```
-
-#### 获取svn log中的change list, 以便用于填写上线单
-
-```
-  gulp svnChanges --svn 本地svn路径 --ver svn提交号
-
- 参数说明：
- --svn 需要读取的svn本地文件所在目录 必须
- --ver 指定需要比较的svn版本号 默认比较最后一个提交记录
- --append 需要再每个文件名后追加的字符
- --separate 分隔符，默认一个空格
-
- 示例：gulp svnChanges --svn /Users/kings/didi/svn_static --ver 150518
-
- 以上示例命令会在当前命令(即gulpfile文件所在路径)生成svn_changelist_vertion.txt结果文件，内容示例如下：
-
-    https://svn.xiaojukeji.com/xiaoju/server/static/trunk/pinche/images/h5/editor.png 150518
-    https://svn.xiaojukeji.com/xiaoju/server/static/trunk/pinche/images/h5/setting.png 150518
-
-
-```
 
 #### 问题列表
 
-  [- 前后端如何联调?](https://git.xiaojukeji.com/Tech-Bs/fe-scaffold-v1/wikis/how-to-debug-between-fe-be)   
-
-  [- 如何设置浏览器代理?](https://git.xiaojukeji.com/Tech-Bs/fe-scaffold-v1/wikis/home)
-
-  [- 手动安装chrome代理插件：SwitchyOmega](http://jingyan.baidu.com/article/11c17a2c121c0ff446e39d16.html)
+  [- 前后端如何联调?]()
+  [- 如何设置浏览器代理?]()
+  [- 手动安装chrome代理插件：SwitchyOmega]()
 
 #### TODOS
   1. 将资源合并，构建组件化机制。
 	1. dist文件夹内文件统一添加版本号问题
   1. 服务挂载
-	1. 更便捷的更新gulpfile方式
 
 #### Contributors
 
-<img src="https://git.xiaojukeji.com/uploads/user/avatar/1013/head.jpeg" height="20" width="20">  [赵新](https://git.xiaojukeji.com/u/zhaolixin)  
-<img src="https://secure.gravatar.com/avatar/f2fccc43d2d1335f14a0b9404542e7d3?s=400&d=identicon" height="20" width="20">  [王江伟](https://git.xiaojukeji.com/u/wangjiangwei)
+<img src="https://avatars3.githubusercontent.com/u/3196171?v=3&s=460" height="20" width="20">  [赵新](https://github.com/ian000)  
+<img src="xxx" height="20" width="20">  [王江伟]()
