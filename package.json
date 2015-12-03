@@ -1,6 +1,6 @@
 {
   "name": "gulp-turbo",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "repository":{
     "type": "git",
     "url":"git@github.com:ian000/gulp-turbo.git"
