@@ -1,13 +1,13 @@
 {
-  "name": "fe-scaffold",
+  "name": "gulp-turbo",
   "version": "1.0.0",
-  "repository": "git@git.xiaojukeji.com:Tech-Bs/fe-scaffold-v1.git",
-  "description": "车后前端脚手架-example",
+  "repository": "git@github.com:ian000/Turbo.git",
+  "description": "前端脚手架",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "zhaolixin@didichuxing.com",
+  "author": "ianzhao2010@gmail.com",
   "license": "MIT",
   "dependencies": {
     "coffee-script": "^1.10.0",
@@ -56,7 +56,7 @@
   "proxyProt": 8989,
   "proxyRule": [
     {
-      "pattern": "skyfire.xiaojukeji.com/skyfire/ssu/editBefore1",
+      "pattern": "xxx.b.com/skyfire/ssu/editBefore1",
       "responder": "/Users/kings/didi/prod/fe-scaffold-v1/app/dev/html/page1.html"
     }
   ]
