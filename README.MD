@@ -39,6 +39,7 @@ npm i gulp-turbo
 #### 运行example
 
 ```
+git clone git@github.com:ian000/gulp-turbo.git
 cd gulp-turbo
 npm i
 cd example
@@ -68,7 +69,7 @@ gulp (注意:mac监听1024以下端口通常需要 sudo gulp)
 
 ```
  gulp dist
- 
+
 ```
 
 #### 提供http server, 支持mock接口数据功能。
