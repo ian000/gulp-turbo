@@ -1,13 +1,19 @@
 {
   "name": "gulp-turbo-demo",
-  "version": "1.0.0",
-  "repository": "git@github.com:ian000/gulp-turbo.git",
+  "version": "1.0.1",
+  "repository":{
+    "type": "git",
+    "url":"git@github.com:ian000/gulp-turbo.git"
+  },
   "description": "前端脚手架-example",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "ianzhao2010@gmail.com",
+  "author": {
+    "name":"ian zhao",
+    "email":"ianzhao2010@gmail.com"
+  },
   "license": "MIT",
   "dependencies": {
     "coffee-script": "^1.10.0",

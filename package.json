@@ -1,16 +1,19 @@
 {
   "name": "gulp-turbo",
-  "version": "1.0.0",
-  "repository": {
+  "version": "1.0.1",
+  "repository":{
     "type": "git",
-    "url": "git@github.com:ian000/gulp-turbo.git"
+    "url":"git@github.com:ian000/gulp-turbo.git"
   },
-  "description": "前端脚手架",
-  "main": "index.js",
+  "description": "前端脚手架（requirejs/jade/stylus/coffee），完整强缩进工作流，高效率适合初期前端团队",
+  "main": "index.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "ianzhao2010@gmail.com",
+  "author": {
+    "name":"ian zhao",
+    "email":"ianzhao2010@gmail.com"
+  },
   "license": "MIT",
   "dependencies": {
     "coffee-script": "^1.10.0",
