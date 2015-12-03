@@ -19,30 +19,5 @@
     "coffee-script": "^1.10.0",
     "gulp": "^3.9.0",
     "require-dir": "^0.3.0"
-  },
-  "routerPath": "/tech-bs",
-  "forceLivereload": true,
-  "httpProt": 80,
-  "serverProxies": [
-    {
-      "source": "/tech-bs/abc",
-      "target": "http://127.0.0.1:8080/tech-bs/abc",
-      "options": {
-        "headers": {
-          "ABC_HEADER": "abc"
-        }
-      }
-    },
-    {
-      "source": "/tech-bs/aaa",
-      "target": "http://127.0.0.1:8081/tech-bs/aaa"
-    }
-  ],
-  "proxyProt": 8989,
-  "proxyRule": [
-    {
-      "pattern": "xxxx.abc.com/skyfire/ssu/editBefore1",
-      "responder": "/Users/kings/didi/prod/xxx/app/dev/html/page1.html"
-    }
-  ]
+  }
 }

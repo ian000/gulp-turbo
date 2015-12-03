@@ -32,11 +32,22 @@
 #### 安装（依赖node.js，npm）
 
 ```
-npm i 或者 解压缩 node_modules.zip
+npm i gulp-turbo
 
 ```
 
-####  快速构建前端项目
+#### 运行example
+
+```
+cd gulp-turbo
+npm i
+cd example
+npm i
+gulp (注意:mac监听1024以下端口通常需要 sudo gulp)
+
+```
+
+####  快速构建前端项目目录
 
 ```
  gulp init
@@ -57,8 +68,7 @@ npm i 或者 解压缩 node_modules.zip
 
 ```
  gulp dist
-
-
+ 
 ```
 
 #### 提供http server, 支持mock接口数据功能。
@@ -107,4 +117,4 @@ npm i 或者 解压缩 node_modules.zip
 #### Contributors
 
 <img src="https://avatars3.githubusercontent.com/u/3196171?v=3&s=460" height="20" width="20">  [赵新](https://github.com/ian000)  
-<img src="xxx" height="20" width="20">  [王江伟]()
+<img src="" height="20" width="20">  [王江伟]()
