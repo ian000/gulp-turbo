@@ -101,7 +101,7 @@ npm i 或者 解压缩 node_modules.zip
 
 #### TODOS
   1. 将资源合并，构建组件化机制。
-	1. dist文件夹内文件统一添加版本号问题
+  1. dist文件夹内文件统一添加版本号问题
   1. 服务挂载
 
 #### Contributors
