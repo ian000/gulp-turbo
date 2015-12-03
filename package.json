@@ -1,7 +1,10 @@
 {
   "name": "gulp-turbo",
   "version": "1.0.0",
-  "repository": "git@github.com:ian000/Turbo.git",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ian000/gulp-turbo.git"
+  },
   "description": "前端脚手架",
   "main": "index.js",
   "scripts": {
@@ -59,5 +62,22 @@
       "pattern": "xxx.b.com/skyfire/ssu/editBefore1",
       "responder": "/Users/kings/didi/prod/fe-scaffold-v1/app/dev/html/page1.html"
     }
+  ],
+  "bugs": {
+    "url": "https://github.com/ian000/gulp-turbo/issues"
+  },
+  "homepage": "https://github.com/ian000/gulp-turbo",
+  "directories": {
+    "example": "example"
+  },
+  "keywords": [
+    "gulp",
+    "jade",
+    "stylus",
+    "coffee",
+    "workflow",
+    "scaffold",
+    "fe",
+    "nodejs"
   ]
 }
