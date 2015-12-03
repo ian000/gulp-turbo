@@ -1,0 +1,63 @@
+{
+  "name": "fe-scaffold",
+  "version": "1.0.0",
+  "repository": "git@git.xiaojukeji.com:Tech-Bs/fe-scaffold-v1.git",
+  "description": "车后前端脚手架-example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zhaolixin@didichuxing.com",
+  "license": "MIT",
+  "dependencies": {
+    "coffee-script": "^1.10.0",
+    "gulp": "^3.9.0",
+    "gulp-coffee": "^2.3.1",
+    "gulp-data": "^1.2.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-jsonlint": "^1.1.1",
+    "gulp-nproxy": "^1.4.3-1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-requirejs": "^0.1.3",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-stylus": "^2.1.0",
+    "gulp-uglify": "^1.4.2",
+    "gulp-util": "^3.0.6",
+    "gulp-webserver": "^0.9.1",
+    "gulp-wrap-amd": "^0.5.0",
+    "lodash": "^3.10.1",
+    "mkdirp": "^0.5.1",
+    "plumber": "^0.4.8",
+    "read-file": "^0.2.0",
+    "request": "^2.65.0",
+    "require-dir": "^0.3.0",
+    "through2": "^2.0.0",
+    "yargs": "^3.29.0"
+  },
+  "routerPath": "/tech-bs",
+  "forceLivereload": true,
+  "httpProt": 80,
+  "serverProxies": [
+    {
+      "source": "/tech-bs/abc",
+      "target": "http://127.0.0.1:8080/tech-bs/abc",
+      "options": {
+        "headers": {
+          "ABC_HEADER": "abc"
+        }
+      }
+    },
+    {
+      "source": "/tech-bs/aaa",
+      "target": "http://127.0.0.1:8081/tech-bs/aaa"
+    }
+  ],
+  "proxyProt": 8989,
+  "proxyRule": [
+    {
+      "pattern": "skyfire.xiaojukeji.com/skyfire/ssu/editBefore1",
+      "responder": "/Users/kings/didi/prod/fe-scaffold-v1/app/dev/html/page1.html"
+    }
+  ]
+}

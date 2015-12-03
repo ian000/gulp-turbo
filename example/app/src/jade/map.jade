@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    title 腾讯地图
+    style(type='text/css').
+      *{
+      margin:0px;
+      padding:0px;
+      }
+      body, button, input, select, textarea {
+      font: 12px/16px Verdana, Helvetica, Arial, sans-serif;
+      }
+    script(charset='utf-8', src='http://map.qq.com/api/js?v=1')
+    script.
+      var init = function() {
+      var center = new soso.maps.LatLng(39.916527,116.397128);
+      var map = new soso.maps.Map(document.getElementById('container'),{
+      center: center,
+      zoomLevel: 15
+      });
+      var anchor = new soso.maps.Point(106, 126),
+      size = new soso.maps.Size(24, 24),
+      icon = new soso.maps.MarkerImage('http://open.map.qq.com/doc/sample/img/center.gif', size, anchor);
+      var marker = new soso.maps.Marker({
+      icon: icon,
+      map: map,
+      position:map.getCenter()});
+      }
+  body(onload='init()')
+    #container(style='width:603px;height:300px')
+    p#info(style='margin-top:10px;')

@@ -1,0 +1,11 @@
+extends layout/main
+
+block head
+	title testing
+	script.
+		$CONFIG ={
+			"data":111
+		}
+		wwwroot = "!{wwwroot}"
+block footer
+	script(data-main="#{wwwroot}/js/page1" src="#{wwwroot}/vender/require.js")

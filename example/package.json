@@ -1,0 +1,41 @@
+{
+  "name": "fe-scaffold",
+  "version": "1.0.0",
+  "repository": "git@git.xiaojukeji.com:Tech-Bs/fe-scaffold-v1.git",
+  "description": "车后前端脚手架-example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zhaolixin@didichuxing.com",
+  "license": "MIT",
+  "dependencies": {
+    "coffee-script": "^1.10.0",
+    "gulp": "^3.9.0"
+  },
+  "routerPath": "/tech-bs",
+  "forceLivereload": true,
+  "httpProt": 80,
+  "serverProxies": [
+    {
+      "source": "/tech-bs/abc",
+      "target": "http://127.0.0.1:8080/tech-bs/abc",
+      "options": {
+        "headers": {
+          "ABC_HEADER": "abc"
+        }
+      }
+    },
+    {
+      "source": "/tech-bs/aaa",
+      "target": "http://127.0.0.1:8081/tech-bs/aaa"
+    }
+  ],
+  "proxyProt": 8989,
+  "proxyRule": [
+    {
+      "pattern": "skyfire.xiaojukeji.com/skyfire/ssu/editBefore1",
+      "responder": "/Users/kings/didi/prod/fe-scaffold-v1/app/dev/html/page1.html"
+    }
+  ]
+}
