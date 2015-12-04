@@ -25,8 +25,9 @@
 ```
 ## 创建项目
 
-#### 1. 安装依赖
+#### 1. 初始化npm项目、安装依赖
 ```
+npm init
 npm i require-dir --save
 
 ```
@@ -104,8 +105,24 @@ gulp.task('default', ['dev']);
   }]
 }
 ```
+#### 4.运行(创建project-conf.json)
+> 注意:mac监听1024以下端口通常需要 sudo gulp)
+> 访问路径为 http://127.0.0.1/ +routerPath  例：http://127.0.0.1/tech-bs
+> 启动服务后，将持续监听src下的目录文件变化，自动编译。
+> gulp启动服务后，命令窗口不能关闭。想要实现关闭命令行服务继续运行，可以执行  nohup gulp &&
 
-#### 运行example
+```shell
+
+  #创建文件夹
+  gulp init
+
+  #启动服务
+  gulp
+
+```
+
+## 运行example
+
 
 ```shell
     git clone git@github.com:ian000/gulp-turbo.git
