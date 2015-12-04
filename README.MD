@@ -106,9 +106,9 @@ gulp (注意:mac监听1024以下端口通常需要 sudo gulp)
 
 #### 问题列表
 
-  [- 前后端如何联调?]()
-  [- 如何设置浏览器代理?]()
-  [- 手动安装chrome代理插件：SwitchyOmega]()
+  [- 使用turbo，前后端如何联调页面?](https://github.com/ian000/gulp-turbo/wiki/%E4%BD%BF%E7%94%A8turbo%EF%BC%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E5%A6%82%E4%BD%95%E8%81%94%E8%B0%83%E9%A1%B5%E9%9D%A2)
+  [- 如何设置浏览器代理?](https://github.com/ian000/gulp-turbo/wiki/%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%A3%E7%90%86)
+  [- 手动安装chrome代理插件：SwitchyOmega](http://jingyan.baidu.com/article/11c17a2c121c0ff446e39d16.html)
 
 #### TODOS
   1. 将资源合并，构建组件化机制。
@@ -117,5 +117,5 @@ gulp (注意:mac监听1024以下端口通常需要 sudo gulp)
 
 #### Contributors
 
-<img src="https://avatars3.githubusercontent.com/u/3196171?v=3&s=460" height="20" width="20">  [赵新](https://github.com/ian000)  
-<img src="" height="20" width="20">  [王江伟]()
+<img src="https://avatars3.githubusercontent.com/u/3196171?v=3&s=40">  [赵新](https://github.com/ian000)  
+<img src="https://avatars1.githubusercontent.com/u/6636353?v=3&s=40">  [王江伟](https://github.com/RK-WJW)

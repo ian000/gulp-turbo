@@ -1,9 +1,9 @@
 {
   "name": "gulp-turbo",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "repository":{
     "type": "git",
-    "url":"git@github.com:ian000/gulp-turbo.git"
+    "url":"git://github.com/ian000/gulp-turbo"
   },
   "description": "前端脚手架（requirejs/jade/stylus/coffee），完整强缩进工作流，高效率适合初期前端团队",
   "main": "index.coffee",
