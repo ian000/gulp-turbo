@@ -3,7 +3,7 @@ pkg    = global.pkg
 jade    = require 'gulp-jade'
 wrapAmd = require 'gulp-wrap-amd'
 define  = require './define'
-{approot,wwwroot} = global.feScaffoldConf
+{approot,wwwroot} = pkg
 # jade to js
 gulp.task 'jadeToJs', ()->
   YOUR_LOCALS = {

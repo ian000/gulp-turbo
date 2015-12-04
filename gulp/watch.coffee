@@ -2,7 +2,7 @@ gulp   = global.globalGulp or require 'gulp'
 pkg    = global.pkg
 util   = require 'gulp-util'
 define = require './define'
-{approot,wwwroot} = global.feScaffoldConf
+{approot,wwwroot} = pkg
 
 # watcher
 gulp.task 'watch',[],()->

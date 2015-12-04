@@ -10,27 +10,6 @@
 > 1. 提供代理服务（即：htpp代理服务，支持抓包和mapping本地文件，可以用来调试移动端）
 > 1. 提供获取svn的change list工具, 以便用于填写上线单
 
-
-#### change log
-
-    [12.03] -【里程碑】将脚手架包装成npm组件
-    [12.03] - 加入json文件校验
-    [12.03] - 为解决gulpfile.coffe以后的维护问题，拆分gulpfile.coffe到gulp-tasks文件夹
-    [12.03] - 压缩css、js时，添加处理文件的log信息输出
-    [12.02] - 在gulp dist之前不需要先执行gulp dev了
-    [11.16] - svnChanges任务修改，过滤掉文件夹和删除的变更记录
-    [11.12] - 提供80端口代理、转发功能
-    [11.12] - 新增svnChanges任务，获取svn log中的change list, 以便用于填写上线单
-    [11.10] - 在dist模式下，增加sourcemaps支持
-    [11.09] - 抽离配置文件到package.json中
-    [11.06] - 新增图片文件夹
-    [11.06] - 支持透明代理
-    [11.06] - 支持代理
-    [11.05] - 修复dist模式
-    [11.04] - 新增page_$config.json
-    [11.04] - 自动配置页面内的wwwroot
-
-
 #### 安装（依赖node.js，npm）
 
 ```shell
@@ -44,8 +23,14 @@
   npm i gulp-turbo --save
 
 ```
+## 创建项目
 
-#### 创建gulpfile.js
+#### 1. 安装依赖
+```
+npm i require-dir --save
+
+```
+#### 2. 创建gulpfile.js
 ```javascript
 var gulp, porjectConf, requireDir, turbo;
 gulp              = require('gulp');
@@ -62,6 +47,63 @@ gulp.task('default', ['dev']);
 
 ```
 
+#### 3.配置项目(创建project-conf.json)
+> 注意:json文件里面不能有注释
+
+```
+{
+  //路由路径:比如将项目访问根目录127.0.0.1改为虚拟路径http://127.0.0.1/tech-bs
+  "routerPath": "/tech-bs",
+
+  //项目文件夹根目录名称
+  "approot": "app",
+
+  //默认开发模式
+  "distMode": "dev",
+
+  //静态资源域名。项目中的静态资源都是以带有域名的绝对路径引用的,将会用到这个配置。
+  "domain": "//xxx.bbb.com",
+
+  //配置透明代理时需要用到这个。即：线下没有的文件，将会在这个域名为根去获取内容，要求此域名跟domain指向的静态资源池相同
+  "vhost": "http://xxx.aaa.com.cn",
+
+  //自动刷新浏览器。用于调试 true是开启，将会在页面注入一个js用来做实时通讯。
+  "forceLivereload": true,
+
+  //默认端口
+  "httpProt": 80,
+
+  //反向代理，用于共享 httpProt 端口
+  "serverProxies": [{
+
+    //如果用户访问这个路径，如 http://127.0.0.1/tech-bs/abc, 相当与访问 target设置的http路径,但还是走httpProt端口
+    "source": "/tech-bs/abc",
+    "target": "http://127.0.0.1:8080/tech-bs/abc",
+    "options": {
+      //请求头
+      "headers": {
+        "ABC_HEADER": "abc"
+      }
+    }
+  }, {
+    "source": "/tech-bs/aaa",
+    "target": "http://127.0.0.1:8081/tech-bs/aaa"
+  }],
+
+  // 代理服务器端口。 通常用于调试移动端，抓包，替换请求. 类似fiddler或者charlse
+  "proxyProt": 8989,
+
+  //代理规则(支持正则，可以设置多个规则)
+  "proxyRule": [{
+
+    //替换规则
+    "pattern": "xxx.b.com/skyfire/ssu/editBefore1",
+
+    //用于响应的文件
+    "responder": "/Users/kings/didi/prod/fe-scaffold-v1/app/dev/html/page1.html"
+  }]
+}
+```
 
 #### 运行example
 
@@ -139,10 +181,29 @@ gulp dist
 
 #### 问题列表
 
-  [- 使用turbo，前后端如何联调页面?](https://github.com/ian000/gulp-turbo/wiki/%E4%BD%BF%E7%94%A8turbo%EF%BC%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E5%A6%82%E4%BD%95%E8%81%94%E8%B0%83%E9%A1%B5%E9%9D%A2)
-  [- 如何设置浏览器代理?](https://github.com/ian000/gulp-turbo/wiki/%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%A3%E7%90%86)
-  [- 手动安装chrome代理插件：SwitchyOmega](http://jingyan.baidu.com/article/11c17a2c121c0ff446e39d16.html)
+  1. [- 使用turbo，前后端如何联调页面?](https://github.com/ian000/gulp-turbo/wiki/%E4%BD%BF%E7%94%A8turbo%EF%BC%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E5%A6%82%E4%BD%95%E8%81%94%E8%B0%83%E9%A1%B5%E9%9D%A2)
+  1. [- 如何设置浏览器代理?](https://github.com/ian000/gulp-turbo/wiki/%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%A3%E7%90%86)
+  1. [- 手动安装chrome代理插件：SwitchyOmega](http://jingyan.baidu.com/article/11c17a2c121c0ff446e39d16.html)
 
+
+#### change log
+
+    [12.03] -【里程碑】将脚手架包装成npm组件
+    [12.03] - 加入json文件校验
+    [12.03] - 为解决gulpfile.coffe以后的维护问题，拆分gulpfile.coffe到gulp-tasks文件夹
+    [12.03] - 压缩css、js时，添加处理文件的log信息输出
+    [12.02] - 在gulp dist之前不需要先执行gulp dev了
+    [11.16] - svnChanges任务修改，过滤掉文件夹和删除的变更记录
+    [11.12] - 提供80端口代理、转发功能
+    [11.12] - 新增svnChanges任务，获取svn log中的change list, 以便用于填写上线单
+    [11.10] - 在dist模式下，增加sourcemaps支持
+    [11.09] - 抽离配置文件到package.json中
+    [11.06] - 新增图片文件夹
+    [11.06] - 支持透明代理
+    [11.06] - 支持代理
+    [11.05] - 修复dist模式
+    [11.04] - 新增page_$config.json
+    [11.04] - 自动配置页面内的wwwroot
 
 #### TODOS
   1. 将资源合并，构建组件化机制。

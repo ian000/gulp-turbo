@@ -8,7 +8,7 @@ _          = require 'lodash'
 path       = require 'path'
 define     = require './define'
 
-{base,approot,distMode,distPath} = global.feScaffoldConf
+{base,approot,distMode,distPath} = pkg
 
 # stylus - with sourcemaps
 gulp.task 'stylus', ()->

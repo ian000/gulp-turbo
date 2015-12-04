@@ -8,16 +8,11 @@ path   = require 'path'
 util.log "pkg.routerPath",pkg.routerPath
 
 # define
-{approot,distMode,domain,routerPath} = global.feScaffoldConf =
-  approot    : 'app'
-  distMode   : 'dev'
-  routerPath : pkg.routerPath
-  domain     : '//static.xiaojukeji.com'
-  vhost      : 'http://static.diditaxi.com.cn'
+{approot,distMode,domain,routerPath} = pkg
 
 #extends feScaffold config
 extconf =
     base     : path.resolve approot,'../'
     distPath : approot+'/'+distMode
     wwwroot  : domain+routerPath
-global.feScaffoldConf = _.assign global.feScaffoldConf, extconf
+global.pkg = _.assign pkg, extconf

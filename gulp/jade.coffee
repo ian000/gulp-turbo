@@ -6,7 +6,7 @@ _      = require 'lodash'
 util   = require 'gulp-util'
 jade   = require 'gulp-jade'
 define = require './define'
-{approot,distPath,wwwroot} = global.feScaffoldConf
+{approot,distPath,wwwroot} = pkg
 
 #jade
 gulp.task 'jade', ()->

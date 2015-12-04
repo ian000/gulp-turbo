@@ -2,7 +2,7 @@ gulp   = global.globalGulp or require 'gulp'
 pkg    = global.pkg
 mkdir  = require 'mkdirp'
 define = require './define'
-{approot} = global.feScaffoldConf
+{approot} = pkg
 
 # the empty project init
 gulp.task 'init', ( cb ) ->

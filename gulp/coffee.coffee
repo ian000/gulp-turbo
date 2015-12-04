@@ -4,7 +4,7 @@ util       = require 'gulp-util'
 coffee     = require 'gulp-coffee'
 sourcemaps = require 'gulp-sourcemaps'
 define     = require './define'
-{approot,distPath} = global.feScaffoldConf
+{approot,distPath} = pkg
 
 # coffee
 gulp.task 'coffee', ()->

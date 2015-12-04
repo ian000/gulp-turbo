@@ -8,7 +8,8 @@ path            = require 'path'
 webserver       = require 'gulp-webserver'
 define          = require './define'
 forceLivereload = if typeof(pkg.forceLivereload != 'undefined') then !!pkg.forceLivereload else distMode=='dev'
-{base,approot,vhost,routerPath,distPath,wwwroot} = global.feScaffoldConf
+console.log 'approot',pkg.approot
+{base,approot,vhost,routerPath,distPath,wwwroot} = pkg
 
 util.log 'current webroot:',distPath
 

@@ -7,7 +7,7 @@ through    = require 'through2'
 uglify     = require 'gulp-uglify'
 path       = require 'path'
 define     = require './define'
-{approot,distPath} = global.feScaffoldConf
+{approot,distPath} = pkg
 #requirejs min
 gulp.task 'rMin',['setDev','compile'],()->
     gulp.src approot+'/dev/js/*.js',
