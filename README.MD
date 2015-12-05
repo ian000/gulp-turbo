@@ -105,7 +105,7 @@ gulp.task('default', ['dev']);
   }]
 }
 ```
-#### 4.运行(创建project-conf.json)
+#### 4.运行
 > 注意:mac监听1024以下端口通常需要 sudo gulp)
 > 访问路径为 http://127.0.0.1/ +routerPath  例：http://127.0.0.1/tech-bs
 > 启动服务后，将持续监听src下的目录文件变化，自动编译。
