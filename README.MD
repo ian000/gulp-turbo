@@ -1,5 +1,5 @@
-## gulp-Turbo[![](https://img.shields.io/npm/v/gulp-turbo.svg?style=flat)](https://www.npmjs.org/package/gulp-turbo)  >
-> (译:涡轮增压器， 前端工作流，为前端开发联调加速。)
+## gulp-Turbo[![](https://img.shields.io/npm/v/gulp-turbo.svg?style=flat)](https://www.npmjs.org/package/gulp-turbo)  
+> 译:涡轮增压器， 前端工作流，为前端开发联调加速。
 
 ### 前端工作流 功能说明
 > 1. 快速构建前端项目
