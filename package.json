@@ -1,11 +1,11 @@
 {
   "name": "gulp-turbo",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "repository": {
     "type": "git",
     "url": "git://github.com/ian000/gulp-turbo"
   },
-  "description": "前端脚工作流（requirejs/jade/stylus/coffee），完整强缩进工作流，同步异步模板复用，高效率适合初期前端团队",
+  "description": "前端工作流（requirejs/jade/stylus/coffee），完整强缩进工作流，同步异步模板复用，高效率适合初期前端团队",
   "main": "index.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
