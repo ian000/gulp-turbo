@@ -26,7 +26,7 @@
 
 ```
 ## 创建项目
-> 可以使用[yomen生成器](https://www.npmjs.com/package/gulp-turbo)，或者按照以下步骤创建项目。
+> 可以使用[yomen生成器](https://www.npmjs.com/package/generator-turbo)，或者按照以下步骤创建项目。
 
 #### 1. 初始化npm项目、安装依赖
 ```
