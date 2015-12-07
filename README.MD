@@ -33,6 +33,7 @@ npm i require-dir --save
 ```
 #### 2. 创建gulpfile.js
 ```javascript
+require('coffee-script').register();
 var gulp, porjectConf, requireDir, turbo;
 gulp              = require('gulp');
 requireDir        = require('require-dir');
@@ -41,10 +42,13 @@ porjectConf       = require('./porject-conf.json');
 global.globalGulp = gulp;
 global.pkg        = porjectConf;
 requireDir(turbo.dir);
+//console.log('查看所有 gulp.tasks',gulp.tasks);
+// tasks
+gulp.task ('compile'      , ['jade','jadeToJs','stylus','coffee','cpVender','cpImg'])
+gulp.task ('dev'          , ['jsonlint','setDev','compile','proxy','server','watch'])
+gulp.task ('dist'         , ['setDist','jade','stylus','rMin','cpVender','cpImg','server','watch'])
 
-gulp.task('dev', ['jsonlint', 'setDev', 'compile', 'proxy', 'server', 'watch']);
-gulp.task('dist', ['setDist', 'jade', 'stylus', 'rMin', 'cpVender', 'cpImg','server', 'watch']);
-gulp.task('default', ['dev']);
+gulp.task ('default',['dev'])
 
 ```
 
@@ -72,7 +76,7 @@ gulp.task('default', ['dev']);
   "forceLivereload": true,
 
   //默认端口
-  "httpProt": 80,
+  "httpPort": 80,
 
   //反向代理，用于共享 httpProt 端口
   "serverProxies": [{
@@ -92,7 +96,7 @@ gulp.task('default', ['dev']);
   }],
 
   // 代理服务器端口。 通常用于调试移动端，抓包，替换请求. 类似fiddler或者charlse
-  "proxyProt": 8989,
+  "proxyPort": 8989,
 
   //代理规则(支持正则，可以设置多个规则)
   "proxyRule": [{

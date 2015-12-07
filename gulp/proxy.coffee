@@ -7,5 +7,5 @@ define = require './define'
 gulp.task 'proxy', ()->
   nproxy
     timeout: 10
-    port: pkg.proxyProt
+    port: pkg.proxyPort
     rule: pkg.proxyRule

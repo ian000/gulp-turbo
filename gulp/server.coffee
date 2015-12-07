@@ -21,7 +21,7 @@ gulp.task 'server', ()->
             livereload       : forceLivereload
             host             : '0.0.0.0'
             path             : routerPath
-            port             : pkg.httpProt
+            port             : pkg.httpPort
             proxies          : pkg.serverProxies
             directoryListing :
               enable:true
