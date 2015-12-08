@@ -4,6 +4,10 @@ define = require './define'
 
 # copy vender
 gulp.task 'cpVender', ()->
-  {approot,distPath} = pkg
+  {approot,distMode} = pkg
   gulp.src approot+'/src/vender/**/*.*'
-    .pipe gulp.dest distPath+'/vender'
+    .pipe gulp.dest approot+'/dev/vender'
+
+  if distMode=='dist'
+    gulp.src approot+'/src/vender/**/*.*'
+      .pipe gulp.dest approot+'/'+distMode+'/vender'

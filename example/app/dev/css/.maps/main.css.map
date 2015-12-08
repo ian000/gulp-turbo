@@ -1,1 +1,0 @@
-{"version":3,"sources":["main.styl","mod.styl"],"names":[],"mappings":"AAAA;EACC,OAAQ,KAAR;;ACDD;EACC,OAAQ,KAAR","file":"main.css","sourcesContent":["body\n\tcolor : #333\n@import 'mod'\n","div\n\tcolor : #333"],"sourceRoot":"/source/"}
