@@ -37,13 +37,13 @@ npm i require-dir --save
 #### 2. 创建gulpfile.js
 ```javascript
 require('coffee-script').register();
-var gulp, porjectConf, requireDir, turbo;
+var gulp, projectConf, requireDir, turbo;
 gulp              = require('gulp');
 requireDir        = require('require-dir');
 turbo             = require('gulp-turbo');
-porjectConf       = require('./porject-conf.json');
+projectConf       = require('./porject-conf.json');
 global.globalGulp = gulp;
-global.pkg        = porjectConf;
+global.pkg        = projectConf;
 requireDir(turbo.dir);
 //console.log('查看所有 gulp.tasks',gulp.tasks);
 // tasks
@@ -81,10 +81,10 @@ gulp.task ('default',['dev'])
   //默认端口
   "httpPort": 80,
 
-  //反向代理，用于共享 httpProt 端口
+  //反向代理，用于共享 httpPort 端口
   "serverProxies": [{
 
-    //如果用户访问这个路径，如 http://127.0.0.1/tech-bs/abc, 相当与访问 target设置的http路径,但还是走httpProt端口
+    //如果用户访问这个路径，如 http://127.0.0.1/tech-bs/abc, 相当与访问 target设置的http路径,但还是走httpPort端口
     "source": "/tech-bs/abc",
     "target": "http://127.0.0.1:8080/tech-bs/abc",
     "options": {
