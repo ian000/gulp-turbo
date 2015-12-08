@@ -5,7 +5,7 @@
   "domain": "//xxx.bbb.com",
   "vhost": "http://xxx.aaa.com.cn",
   "forceLivereload": true,
-  "httpProt": 80,
+  "httpPort": 80,
   "serverProxies": [{
     "source": "/tech-bs/abc",
     "target": "http://127.0.0.1:8080/tech-bs/abc",

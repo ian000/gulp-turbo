@@ -6,11 +6,12 @@ _      = require 'lodash'
 util   = require 'gulp-util'
 jade   = require 'gulp-jade'
 define = require './define'
-{approot,distPath,wwwroot} = pkg
+
 
 #jade
 gulp.task 'jade', ()->
-  currFile = null
+  {approot,distPath,wwwroot} = pkg
+  console.log 'jade distPath',distPath
   LOCALS =
     wwwroot : wwwroot
   gulp.src [approot+'/src/jade/**/*.jade','!'+approot+'/src/jade/layout/*.*','!'+approot+'/src/jade/module/**/*.jade']
@@ -19,13 +20,15 @@ gulp.task 'jade', ()->
       util.log 'jade file.path-->',file.path
       $CONFIG= file.path.replace(/\.jade/,'\_$config\.json')
       if fs.existsSync($CONFIG)
-        _data = _.assign({}, JSON.parse(fs.readFileSync($CONFIG)), LOCALS)
+        _$CONFIG =
+        	$CONFIG : JSON.parse(fs.readFileSync($CONFIG))
+        _data = _.assign({}, _$CONFIG, LOCALS)
         return _data;
       else
         _data = _.assign({}, {}, LOCALS);
         return _data;
     .on 'error',(e)->
-      util.log 'jade-error->',e.toString()+'    @========>'+ currFile.path
+      util.log 'jade-error->',e.toString()+'    ========>'+ currFile.path
     .pipe jade
           pretty: true
     .pipe gulp.dest distPath+'/html/'

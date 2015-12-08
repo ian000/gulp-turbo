@@ -1,0 +1,1 @@
+{"version":3,"sources":["module/mod2.coffee"],"names":[],"mappings":"AAAA,OAAA,CAAQ,CAAC,MAAD,CAAR,EAAkB,SAAA;AACjB,SAAO;AADU,CAAlB","file":"module/mod2.js","sourceRoot":"/source/","sourcesContent":["require ['jade'], ()->\n\treturn 222"]}

@@ -1,5 +1,5 @@
 gulp       = global.globalGulp or require 'gulp'
-pkg    = global.pkg
+pkg        = global.pkg
 util       = require 'gulp-util'
 requirejs  = require 'gulp-requirejs'
 sourcemaps = require 'gulp-sourcemaps'
@@ -7,9 +7,10 @@ through    = require 'through2'
 uglify     = require 'gulp-uglify'
 path       = require 'path'
 define     = require './define'
-{approot,distPath} = pkg
+
 #requirejs min
-gulp.task 'rMin',['setDev','compile'],()->
+gulp.task 'rMin',['compile'],()->
+    {approot,distPath} = pkg
     gulp.src approot+'/dev/js/*.js',
         read: false
       .pipe rjs
@@ -37,8 +38,6 @@ rjs = ( opts ) ->
         beautify: false
         indent_level: 1
     .pipe sourcemaps.write '.maps'
-    # .pipe rename
-    #   extname: '_min.js'
     .pipe pipeHandle (file, enc)->
       util.log 'compress ', fname, ' --> ', file.contents.length, 'bytes'
     .pipe gulp.dest opts.dest
@@ -51,4 +50,5 @@ pipeHandle = (fn)->
       fn(file, enc)
     catch e
       console.log '[ERROR] pipeHandle(fn) ', e.toString()
+    this.push file
     cb()

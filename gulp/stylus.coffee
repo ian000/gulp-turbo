@@ -8,12 +8,16 @@ _          = require 'lodash'
 path       = require 'path'
 define     = require './define'
 
-{base,approot,distMode,distPath} = pkg
+
 
 # stylus - with sourcemaps
 gulp.task 'stylus', ()->
-    isCompress= distMode is 'dist'
-    util.log 'is Compress mode : ',isCompress
+    {base,approot,distMode,distPath} = pkg
+    util.log 'is distPath : ', distPath
+    if(distMode is 'dist')
+      isCompress = true
+
+
     gulp.src [base+'/'+approot+'/src/stylus/**/*.styl','!'+base+'/'+approot+'/src/stylus/module/**/*.styl']
     .pipe sourcemaps.init()
     .pipe stylus
@@ -24,4 +28,5 @@ gulp.task 'stylus', ()->
         util.log 'file.path',file.path
         if(path.extname(file.path) !=".map")
           util.log 'compress ', path.basename(file.path), ' --> ', file.contents.length, 'bytes'
+        this.push file
         cb()

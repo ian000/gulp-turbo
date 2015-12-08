@@ -13,10 +13,7 @@ requireDir turbo.dir
 
 # tasks
 gulp.task 'compile'      , ['jade','jadeToJs','stylus','coffee','cpVender','cpImg']
-gulp.task 'compile:dev'  , ['setDev','compile']
-gulp.task 'compile:dist' , ['setDist','compile']
-gulp.task 'lint'         , ['jsonlint']
-gulp.task 'dev'          , ['lint','setDev','compile','proxy','server','watch']
-gulp.task 'dist'         , ['setDist','jade','stylus','rMin','cpVender','cpImg','server','watch']
+gulp.task 'dev'          , ['jsonlint','compile','proxy','server','watch']
+gulp.task 'dist'         , ['setDist','rMin','server','watch']
 
 gulp.task 'default',['dev'];

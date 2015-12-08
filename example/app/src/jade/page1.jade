@@ -3,9 +3,7 @@ extends layout/main
 block head
 	title testing
 	script.
-		$CONFIG ={
-			"data":111
-		}
-		wwwroot = "!{wwwroot}"
+		var $CONFIG = !{JSON.stringify($CONFIG)}
+		var wwwroot = "!{wwwroot}"
 block footer
 	script(data-main="#{wwwroot}/js/page1" src="#{wwwroot}/vender/require.js")

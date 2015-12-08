@@ -1,14 +1,14 @@
 gulp       = global.globalGulp or require 'gulp'
-pkg        = global.pkg
 util       = require 'gulp-util'
 coffee     = require 'gulp-coffee'
 sourcemaps = require 'gulp-sourcemaps'
 define     = require './define'
-{approot,distPath} = pkg
+
 
 # coffee
 gulp.task 'coffee', ()->
-  gulp.src [approot+'/src/coffee/**/*.coffee','!'+approot+'/src/coffee/module/**/*.coffee']
+  {approot,distPath} = global.pkg
+  gulp.src [approot+'/src/coffee/**/*.coffee']
     .pipe sourcemaps.init()
     .pipe coffee
             bare: true
