@@ -1,6 +1,6 @@
 {
   "name": "gulp-turbo",
-  "version": "1.0.20",
+  "version": "1.0.22",
   "repository": {
     "type": "git",
     "url": "git://github.com/ian000/gulp-turbo"
@@ -16,6 +16,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "chalk": "^1.1.1",
     "coffee-script": "^1.10.0",
     "gulp": "^3.9.0",
     "gulp-coffee": "^2.3.1",

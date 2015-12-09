@@ -1,5 +1,6 @@
 gulp       = global.globalGulp or require 'gulp'
 pkg        = global.pkg
+chalk      = require 'chalk'
 util       = require 'gulp-util'
 requirejs  = require 'gulp-requirejs'
 sourcemaps = require 'gulp-sourcemaps'
@@ -37,18 +38,11 @@ rjs = ( opts ) ->
       output:
         beautify: false
         indent_level: 1
+    .pipe through.obj (file, enc, cb)->
+      console.log chalk.magenta 'compress ', fname, ' --> ', file.contents.length, 'bytes'
+      this.push file
+      cb()
     .pipe sourcemaps.write '.maps'
-    .pipe pipeHandle (file, enc)->
-      util.log 'compress ', fname, ' --> ', file.contents.length, 'bytes'
     .pipe gulp.dest opts.dest
     cb()
     return
-
-pipeHandle = (fn)->
-  through.obj (file, enc, cb)->
-    try
-      fn(file, enc)
-    catch e
-      console.log '[ERROR] pipeHandle(fn) ', e.toString()
-    this.push file
-    cb()

@@ -2,6 +2,7 @@ gulp     = global.globalGulp or require 'gulp'
 pkg      = global.pkg
 fs       = require 'fs'
 util     = require 'gulp-util'
+fs       = require 'fs'
 argv     = require('yargs').argv
 execSync = require('child_process').execSync
 define   = require './define'
