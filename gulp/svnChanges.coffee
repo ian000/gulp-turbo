@@ -1,5 +1,6 @@
 gulp     = global.globalGulp or require 'gulp'
 pkg      = global.pkg
+fs       = require 'fs'
 util     = require 'gulp-util'
 argv     = require('yargs').argv
 execSync = require('child_process').execSync
@@ -32,7 +33,7 @@ gulp.task 'svnChanges', ()->
 
   str = ''
   dataArr = result.split('\n').slice(3,-4).forEach (item)->
-    if /(\s+D\s+)|(\.\w+\s?$)/.test(item) && !/\s+D\s+/.test(item)
+    if /[^\/]+\.\w+\s?$/.test(item)
       str += svnRoot + item.replace(/^[^\/]+(\/.*)\s?$/,'$1')+separate+append+'\n'
   fs.writeFileSync './'+resultFileName, str, {encoding: 'utf8'}
   util.log('*****created change file list: ' + resultFileName + '*****');
