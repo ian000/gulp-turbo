@@ -38,7 +38,8 @@ npm i require-dir --save
 #### 2. 创建gulpfile.js
 
 ```javascript
-  
+
+  require('coffee-script').register();
   var gulp   = require('gulp')
     , turbo  = require('gulp-turbo')
     ;
