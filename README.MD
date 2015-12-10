@@ -26,6 +26,7 @@
 
 ```
 ## 创建项目
+
 > 可以使用[yomen生成器](https://www.npmjs.com/package/generator-turbo)，或者按照以下步骤创建项目。
 
 #### 1. 初始化npm项目、安装依赖
@@ -35,23 +36,12 @@ npm i require-dir --save
 
 ```
 #### 2. 创建gulpfile.js
-```javascript
-require('coffee-script').register();
-var gulp, projectConf, requireDir, turbo;
-gulp              = require('gulp');
-requireDir        = require('require-dir');
-turbo             = require('gulp-turbo');
-projectConf       = require('./porject-conf.json');
-global.globalGulp = gulp;
-global.pkg        = projectConf;
-requireDir(turbo.dir);
-//console.log('查看所有 gulp.tasks',gulp.tasks);
-// tasks
-gulp.task ('compile'      , ['jade','jadeToJs','stylus','coffee','cpVender','cpImg'])
-gulp.task ('dev'          , ['jsonlint','setDev','compile','proxy','server','watch'])
-gulp.task ('dist'         , ['setDist','jade','stylus','rMin','cpVender','cpImg','server','watch'])
 
-gulp.task ('default',['dev'])
+```javascript
+  
+  var gulp   = require('gulp')
+    , turbo  = require('gulp-turbo')
+    ;
 
 ```
 
