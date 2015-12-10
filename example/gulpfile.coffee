@@ -1,12 +1,12 @@
 gulp       = require 'gulp'
-requireDir = require 'require-dir'
+_          = require 'lodash'
+# requireDir = require 'require-dir'
 
 #your require should be  " turbo = require'gulp-turbo' "
 turbo       = require '../index'
-porjectConf = require './porject-conf.json'
+# porjectConf = require './project-conf2.json'
 
-global.pkg        = porjectConf
+# global.pkg  = _.assign global.pkg, porjectConf
+# # requireDir turbo.dir
 
-requireDir turbo.dir
-
-gulp.task 'default',['dev'];
+# gulp.task 'default',['dev'];

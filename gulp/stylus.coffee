@@ -1,5 +1,4 @@
 gulp       = require 'gulp'
-pkg        = global.pkg
 util       = require 'gulp-util'
 chalk      = require 'chalk'
 stylus     = require 'gulp-stylus'
@@ -7,10 +6,10 @@ sourcemaps = require 'gulp-sourcemaps'
 through    = require 'through2'
 _          = require 'lodash'
 path       = require 'path'
-define     = require './define'
 
 # stylus - with sourcemaps
 gulp.task 'stylus', ()->
+    pkg = global.pkg
     {base,approot,distMode,distPath} = pkg
     if(distMode is 'dist')
       isCompress = true

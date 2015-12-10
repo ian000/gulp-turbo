@@ -1,5 +1,4 @@
 gulp       = require 'gulp'
-pkg        = global.pkg
 chalk      = require 'chalk'
 util       = require 'gulp-util'
 requirejs  = require 'gulp-requirejs'
@@ -7,10 +6,10 @@ sourcemaps = require 'gulp-sourcemaps'
 through    = require 'through2'
 uglify     = require 'gulp-uglify'
 path       = require 'path'
-define     = require './define'
 
 #requirejs min
 gulp.task 'rMin',()->
+    pkg = global.pkg
     {approot,distPath} = pkg
     gulp.src approot+'/dev/js/*.js',
         read: false

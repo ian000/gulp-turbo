@@ -6,12 +6,11 @@ url             = require 'url'
 request         = require 'request'
 path            = require 'path'
 webserver       = require 'gulp-webserver'
-define          = require './define'
 forceLivereload = if typeof(pkg.forceLivereload != 'undefined') then !!pkg.forceLivereload else distMode=='dev'
-util.log 'approot',pkg.approot
 
 # webserver-with-mocks
 gulp.task 'server', ()->
+    util.log 'approot',pkg.approot
     {base,approot,vhost,routerPath,distPath,wwwroot} = pkg
     util.log 'current webroot:',distPath
     gulp.src distPath

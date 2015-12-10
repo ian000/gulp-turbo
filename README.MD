@@ -213,9 +213,10 @@ gulp dist
 
 #### change log
 
+    [12.10] - 优化gulpfile,减少依赖，使用更方便，直接引入便可
     [12.03] -【里程碑】将脚手架包装成npm组件
     [12.03] - 加入json文件校验
-    [12.03] - 为解决gulpfile.coffe以后的维护问题，拆分gulpfile.coffe到gulp-tasks文件夹
+    [12.03] - 为解决gulpfile.coffe以后的维护问题，拆分gulpfile.coffe到gulp文件夹
     [12.03] - 压缩css、js时，添加处理文件的log信息输出
     [12.02] - 在gulp dist之前不需要先执行gulp dev了
     [11.16] - svnChanges任务修改，过滤掉文件夹和删除的变更记录

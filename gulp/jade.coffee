@@ -1,17 +1,15 @@
 gulp   = require 'gulp'
-pkg    = global.pkg
 fs     = require 'fs'
 chalk = require 'chalk'
 data   = require 'gulp-data'
 _      = require 'lodash'
 util   = require 'gulp-util'
 jade   = require 'gulp-jade'
-define = require './define'
 
 
 #jade
 gulp.task 'jade', ()->
-  {approot,distPath,wwwroot} = pkg
+  {approot,distPath,wwwroot} = global.pkg
   util.log chalk.blue.bgRed.bold('jade distPath',distPath)
   LOCALS =
     wwwroot : wwwroot

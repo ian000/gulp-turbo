@@ -1,11 +1,9 @@
 gulp     = require 'gulp'
-pkg      = global.pkg
 fs       = require 'fs'
 util     = require 'gulp-util'
 fs       = require 'fs'
 argv     = require('yargs').argv
 execSync = require('child_process').execSync
-define   = require './define'
 
 # task svnChanges
 # e.g:  gulp svnChanges --svn /Users/kings/didi/svn_static --ver 150518
@@ -16,6 +14,7 @@ define   = require './define'
 # --append 需要再每个文件名后追加的字符
 # --separate 分隔符，默认一个空格
 gulp.task 'svnChanges', ()->
+  pkg = global.pkg
   svnDir = argv.svn
   lastVersion = argv.ver
   append = argv.append

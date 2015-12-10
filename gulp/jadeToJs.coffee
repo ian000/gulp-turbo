@@ -1,11 +1,9 @@
 gulp       = require 'gulp'
-pkg    = global.pkg
 jade    = require 'gulp-jade'
 wrapAmd = require 'gulp-wrap-amd'
-define  = require './define'
-{approot,wwwroot} = pkg
 # jade to js
 gulp.task 'jadeToJs', ()->
+  {approot,wwwroot} = global.pkg
   YOUR_LOCALS = {
     wwwroot : wwwroot
   }

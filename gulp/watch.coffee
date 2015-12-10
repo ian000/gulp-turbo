@@ -1,9 +1,8 @@
 gulp   = require 'gulp'
-pkg    = global.pkg
 util   = require 'gulp-util'
-define = require './define'
 # watcher
 gulp.task 'watch',[],()->
+  pkg = global.pkg
   {approot,wwwroot,distMode} = pkg
 
   # jade
@@ -31,7 +30,7 @@ gulp.task 'watch',[],()->
   cpVender_watcher.on 'change', (event)->
     util.log 'File ' + event.path + ' was ' + event.type + ', running cpVender tasks...'
 
-  if distMode=='dist'
-    dist_watcher = gulp.watch [approot + '/dev/**/*.js'], ['rMin']
-    dist_watcher.on 'change', (event)->
-      util.log 'File ' + event.path + ' was ' + event.type + ', running rMin tasks...'
+  # if distMode=='dist'
+  #   dist_watcher = gulp.watch [approot + '/dev/**/*.js'], ['rMin']
+  #   dist_watcher.on 'change', (event)->
+  #     util.log 'File ' + event.path + ' was ' + event.type + ', running rMin tasks...'

@@ -1,11 +1,9 @@
 gulp   = require 'gulp'
-pkg    = global.pkg
 mkdir  = require 'mkdirp'
-define = require './define'
-{approot} = pkg
 
 # the empty project init
 gulp.task 'init', ( cb ) ->
+  {approot} = global.pkg
   jade   = approot+'/src/jade'
   stylus = approot+'/src/stylus'
   coffee = approot+'/src/coffee'

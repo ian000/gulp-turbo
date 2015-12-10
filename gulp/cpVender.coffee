@@ -1,10 +1,9 @@
 gulp   = require 'gulp'
-pkg    = global.pkg
-define = require './define'
 
 # copy vender
 gulp.task 'cpVender', ()->
-  {approot,distMode} = pkg
+  {approot,distMode} = global.pkg
+  
   gulp.src approot+'/src/vender/**/*.*'
     .pipe gulp.dest approot+'/dev/vender'
 

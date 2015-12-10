@@ -1,10 +1,9 @@
 gulp   = require 'gulp'
-pkg    = global.pkg
 nproxy = require 'gulp-nproxy'
-define = require './define'
 
 # proxy
 gulp.task 'proxy', ()->
+  pkg = global.pkg
   nproxy
     timeout: 10
     port: pkg.proxyPort
