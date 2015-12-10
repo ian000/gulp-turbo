@@ -1,4 +1,4 @@
-gulp   = global.globalGulp or require 'gulp'
+gulp   = require 'gulp'
 pkg    = global.pkg
 fs     = require 'fs'
 chalk = require 'chalk'
@@ -12,13 +12,13 @@ define = require './define'
 #jade
 gulp.task 'jade', ()->
   {approot,distPath,wwwroot} = pkg
-  console.log chalk.blue.bgRed.bold('jade distPath',distPath)
+  util.log chalk.blue.bgRed.bold('jade distPath',distPath)
   LOCALS =
     wwwroot : wwwroot
   gulp.src [approot+'/src/jade/**/*.jade','!'+approot+'/src/jade/layout/*.*','!'+approot+'/src/jade/module/**/*.jade']
 
     .pipe data (file)->
-      console.log  chalk.blue('compress',file.path)
+      util.log  chalk.blue('compress',file.path)
       currFile = file
       $CONFIG= file.path.replace(/\.jade/,'\_$config\.json')
       if fs.existsSync($CONFIG)
@@ -30,7 +30,7 @@ gulp.task 'jade', ()->
         _data = _.assign({}, {}, LOCALS);
         return _data;
     .on 'error',(e)->
-      console.log chalk.red('jade-error->',e.toString()+'    ========>'+ currFile.path)
+      util.log chalk.red('jade-error->',e.toString()+'    ========>'+ currFile.patutil.log)
     .pipe jade
           pretty: true
     .pipe gulp.dest distPath+'/html/'

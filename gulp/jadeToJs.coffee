@@ -1,4 +1,4 @@
-gulp       = global.globalGulp or require 'gulp'
+gulp       = require 'gulp'
 pkg    = global.pkg
 jade    = require 'gulp-jade'
 wrapAmd = require 'gulp-wrap-amd'

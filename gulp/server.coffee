@@ -1,4 +1,4 @@
-gulp            = global.globalGulp or require 'gulp'
+gulp            = require 'gulp'
 pkg             = global.pkg
 util            = require 'gulp-util'
 fs              = require 'fs'
@@ -59,7 +59,7 @@ gulp.task 'server', ()->
                     next()
 
             fallback : ()->
-              console.log 'fallback', arguments
+              util.log 'fallback', arguments
               request vhost+req.url, (error, response, body)->
                   if (!error && response.statusCode == 200)
                     next(body)

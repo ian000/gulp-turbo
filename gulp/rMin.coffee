@@ -1,4 +1,4 @@
-gulp       = global.globalGulp or require 'gulp'
+gulp       = require 'gulp'
 pkg        = global.pkg
 chalk      = require 'chalk'
 util       = require 'gulp-util'
@@ -10,7 +10,7 @@ path       = require 'path'
 define     = require './define'
 
 #requirejs min
-gulp.task 'rMin',['compile'],()->
+gulp.task 'rMin',()->
     {approot,distPath} = pkg
     gulp.src approot+'/dev/js/*.js',
         read: false
@@ -39,7 +39,7 @@ rjs = ( opts ) ->
         beautify: false
         indent_level: 1
     .pipe through.obj (file, enc, cb)->
-      console.log chalk.magenta 'compress ', fname, ' --> ', file.contents.length, 'bytes'
+      util.log chalk.magenta 'compress ', fname, ' --> ', file.contents.length, 'bytes'
       this.push file
       cb()
     .pipe sourcemaps.write '.maps'

@@ -1,4 +1,4 @@
-gulp       = global.globalGulp or require 'gulp'
+gulp       = require 'gulp'
 jsonlint   = require "gulp-jsonlint"
 {approot} = pkg
 gulp.task 'jsonlint',()->

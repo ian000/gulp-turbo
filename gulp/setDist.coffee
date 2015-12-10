@@ -1,4 +1,4 @@
-gulp   = global.globalGulp or require 'gulp'
+gulp   = require 'gulp'
 
 # set dist
 gulp.task 'setDist',[],()->

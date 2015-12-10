@@ -6,5 +6,5 @@ require.config
 require ['jade','mainTpl'], (jade, tpl)->
   o = document.createElement "div"
   o.innerHTML = tpl
-  					"arr1":["ccc","dddd"]
+  					"arr1":["ccc333333","dddd"]
   document.body.appendChild o

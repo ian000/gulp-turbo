@@ -4,4 +4,4 @@ require.config
         mainTpl:'tpl/table'
 
 require ['jade','mainTpl'], (jade, tpl)->
-	document.body.innerHTML = tpl({"arr1":["asdasd","dddd"]})
+	document.body.innerHTML = tpl({"arr1":["as2d22asd","dddd"]})

@@ -1,6 +1,6 @@
-gulp       = global.globalGulp or require 'gulp'
+gulp       = require 'gulp'
 pkg        = global.pkg
-define = require './define'
+define     = require './define'
 
 # copy images
 gulp.task 'cpImg', ()->

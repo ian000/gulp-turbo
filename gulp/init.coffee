@@ -1,4 +1,4 @@
-gulp   = global.globalGulp or require 'gulp'
+gulp   = require 'gulp'
 pkg    = global.pkg
 mkdir  = require 'mkdirp'
 define = require './define'

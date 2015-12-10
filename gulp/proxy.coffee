@@ -1,4 +1,4 @@
-gulp   = global.globalGulp or require 'gulp'
+gulp   = require 'gulp'
 pkg    = global.pkg
 nproxy = require 'gulp-nproxy'
 define = require './define'

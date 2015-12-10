@@ -1,6 +1,6 @@
-gulp       = global.globalGulp or require 'gulp'
+gulp       = require 'gulp'
 pkg        = global.pkg
-util       = require 'util'
+util       = require 'gulp-util'
 chalk      = require 'chalk'
 stylus     = require 'gulp-stylus'
 sourcemaps = require 'gulp-sourcemaps'
@@ -20,7 +20,7 @@ gulp.task 'stylus', ()->
     .pipe stylus
             compress: isCompress
     .pipe through.obj (file, enc, cb)->
-        console.log chalk.magenta('compress ', path.basename(file.path), ' --> ', file.contents.length, 'bytes')
+        util.log chalk.magenta('compress ', path.basename(file.path), ' --> ', file.contents.length, 'bytes')
         this.push file
         cb()
     .pipe sourcemaps.write '.maps'

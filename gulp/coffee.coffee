@@ -1,10 +1,10 @@
-gulp       = global.globalGulp or require 'gulp'
+gulp       = require 'gulp'
 pkg        = global.pkg
 util       = require 'gulp-util'
 coffee     = require 'gulp-coffee'
 sourcemaps = require 'gulp-sourcemaps'
 define     = require './define'
-{approot} = pkg
+{approot}  = pkg
 
 # coffee
 gulp.task 'coffee', ()->
