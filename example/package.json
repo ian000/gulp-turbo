@@ -18,6 +18,6 @@
   "dependencies": {
     "coffee-script": "^1.10.0",
     "gulp": "^3.9.0",
-    "require-dir": "^0.3.0"
+    "gulp-turbo": "^1.0.23"
   }
 }

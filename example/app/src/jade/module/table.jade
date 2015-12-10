@@ -1,9 +1,8 @@
 #table
     table
         thead
-            tr  
-                - for(var i=0; i< arr1.length;i++)
-                    td #{arr1[i]}
+            tr
+                - for(var i=0; i< $CONFIG.tableHead.length;i++)
+                    td #{$CONFIG.tableHead[i]}
         tbody
             tr
-               
