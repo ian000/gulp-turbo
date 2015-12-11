@@ -34,16 +34,14 @@ gulp.task 'server', ()->
 
               # mock
               filename = approot+'/mock'+urlObj.pathname+'.json'
-              if(fs.existsSync(filename))
-                _data = fs.readFileSync(filename)
+              if fs.existsSync filename
                 res.setHeader('Content-Type', 'application/json')
-                res.end(_data)
+                res.end fs.readFileSync filename
                 return
 
               # if is a file
               if stats.isFile disk_path
                 res.end fs.readFileSync disk_path
-                next()
                 return
 
               #if local not found
@@ -52,7 +50,7 @@ gulp.task 'server', ()->
                 next()
                 return
               catch err
-                
+
                 # vhost
                 request vhost+req.url, (error, response, body)->
                   if (!error && response.statusCode == 200)
