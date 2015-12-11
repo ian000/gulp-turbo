@@ -1,0 +1,9 @@
+extends layout/main
+
+block head
+	title testing
+	script.
+		var $CONFIG = !{JSON.stringify($CONFIG)}
+block body
+block footer
+	script(data-main="#{wwwroot}/js/page2" src="../vender/require.js")
