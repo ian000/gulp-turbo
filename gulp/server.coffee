@@ -8,7 +8,7 @@ path            = require 'path'
 webserver       = require 'gulp-webserver'
 forceLivereload = if typeof(pkg.forceLivereload != 'undefined') then !!pkg.forceLivereload else distMode=='dev'
 
-# webserver-with-mocks
+# webserver
 gulp.task 'server', ()->
     util.log 'approot',pkg.approot
     {base,approot,vhost,routerPath,distPath,wwwroot} = pkg
@@ -17,7 +17,7 @@ gulp.task 'server', ()->
         .pipe webserver
             livereload       : forceLivereload
             host             : '0.0.0.0'
-            path             : routerPath
+            path             : path.normalize '/'+routerPath
             port             : pkg.httpPort
             proxies          : pkg.serverProxies
             directoryListing :
@@ -28,6 +28,10 @@ gulp.task 'server', ()->
               urlObj = url.parse(req.url, true)
               method = req.method
               filenameOrign = urlObj.pathname
+              #replace to file path
+              disk_path = base + req.url.replace routerPath, '/'+distPath+'/'
+              stats = fs.statSync disk_path
+
               # mock
               filename = approot+'/mock'+urlObj.pathname+'.json'
               if(fs.existsSync(filename))
@@ -36,21 +40,20 @@ gulp.task 'server', ()->
                 res.end(_data)
                 return
 
-              #replace to file path
-              req_url = req.url.replace(routerPath, '/'+distPath+'/')
-
               # if is a file
-              if(fs.existsSync(base+req_url))
+              if stats.isFile disk_path
+                res.end fs.readFileSync disk_path
                 next()
                 return
 
-              # if is a dir
+              #if local not found
               try
-                req_url = (approot+req.url).replace(routerPath, '/'+distPath+'/')
-                fs.readdirSync req_url
+                fs.readdirSync disk_path
                 next()
                 return
               catch err
+                
+                # vhost
                 request vhost+req.url, (error, response, body)->
                   if (!error && response.statusCode == 200)
                     next(_data)
