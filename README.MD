@@ -202,6 +202,7 @@ gulp dist
 
 #### change log
 
+    [12.11] - 新加tasks任务，展示可用任务信息；gulp默认default任务改为dev
     [12.11] - 解决dist模式下watch不能实时压缩的问题；引入coffee-script，使用时需要再coffee register
     [12.10] - 优化gulpfile,减少依赖，使用更方便，直接引入便可
     [12.03] -【里程碑】将脚手架包装成npm组件
