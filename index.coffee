@@ -1,6 +1,3 @@
-#default task
-# module.exports =
-#   'dir' : __dirname+'/gulp'
 _    = require 'lodash'
 path = require 'path'
 util = require 'gulp-util'
