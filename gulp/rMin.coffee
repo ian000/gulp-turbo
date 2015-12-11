@@ -6,6 +6,7 @@ sourcemaps = require 'gulp-sourcemaps'
 through    = require 'through2'
 uglify     = require 'gulp-uglify'
 path       = require 'path'
+md5        = require 'md5'
 
 #requirejs min
 gulp.task 'rMin',()->
@@ -16,7 +17,7 @@ gulp.task 'rMin',()->
       .pipe rjs
         base: approot+'/dev/js/'
         dest: approot+'/dist/js/'
-
+rjs_cache = {}
 rjs = ( opts ) ->
   through.obj ( file, enc, cb ) ->
     fname = path.basename file.path
@@ -32,6 +33,12 @@ rjs = ( opts ) ->
       inlineText: true
       removeCombined: true
       findNestedDependencies: true
+    .pipe through.obj (file, enc, cb)->
+      fileMd5 = md5 file.contents
+      if rjs_cache[file.path] isnt fileMd5
+        rjs_cache[file.path] = fileMd5
+        this.push file
+        cb()
     .pipe sourcemaps.init()
     .pipe uglify
       output:
