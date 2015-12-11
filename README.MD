@@ -32,14 +32,12 @@
 #### 1. 初始化npm项目、安装依赖
 ```
 npm init
-npm i require-dir --save
 
 ```
 #### 2. 创建gulpfile.js
 
 ```javascript
 
-  require('coffee-script').register();
   var gulp   = require('gulp')
     , turbo  = require('gulp-turbo')
     ;
@@ -204,6 +202,7 @@ gulp dist
 
 #### change log
 
+    [12.11] - 解决dist模式下watch不能实时压缩的问题；引入coffee-script，使用时需要再coffee register
     [12.10] - 优化gulpfile,减少依赖，使用更方便，直接引入便可
     [12.03] -【里程碑】将脚手架包装成npm组件
     [12.03] - 加入json文件校验
