@@ -6,6 +6,7 @@ url             = require 'url'
 request         = require 'request'
 path            = require 'path'
 webserver       = require 'gulp-webserver'
+chalk           = require 'chalk'
 through         = require 'through2'
 forceLivereload = if typeof(pkg.forceLivereload != 'undefined') then !!pkg.forceLivereload else distMode=='dev'
 
