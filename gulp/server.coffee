@@ -6,6 +6,7 @@ url             = require 'url'
 request         = require 'request'
 path            = require 'path'
 webserver       = require 'gulp-webserver'
+through         = require 'through2'
 forceLivereload = if typeof(pkg.forceLivereload != 'undefined') then !!pkg.forceLivereload else distMode=='dev'
 
 # webserver
@@ -68,3 +69,6 @@ gulp.task 'server', ()->
               request vhost+req.url, (error, response, body)->
                   if (!error && response.statusCode == 200)
                     next(body)
+        .pipe through.obj (file, enc, cb)->
+          console.log 'running...'
+          cb()
