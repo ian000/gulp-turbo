@@ -30,7 +30,6 @@ gulp.task 'server', ()->
 
               #replace to file path
               disk_path     = path.normalize base+req.url.replace(routerPath, '/'+distPath+'/')
-              stats         = fs.statSync disk_path
               urlObj        = url.parse(req.url, true)
               method        = req.method
 
@@ -41,10 +40,12 @@ gulp.task 'server', ()->
                 res.end fs.readFileSync mockfile
                 return
 
-              # if is a file
-              if stats.isFile disk_path
-                res.end fs.readFileSync disk_path
-                return
+              try
+                stats         = fs.statSync disk_path
+                # if is a file
+                if stats.isFile disk_path
+                  res.end fs.readFileSync disk_path
+                  return
 
               #if local not found
               try

@@ -9,8 +9,8 @@ defaultConf = require path.join(process.cwd(), './project-conf.json')
 defaultConf.routerPath = routerPath = routerPath.replace(/^\//,'')
 
 domain     = '//'+domain if domain.search(/^https?:\/\/|^\/\//) is -1
+wwwroot    = (domain+routerPath).replace /\/$|\\$/,''
 routerPath = path.normalize '/'+routerPath
-wwwroot    = (domain+routerPath).replace /\/$/,''
 
 #extends project config
 extconf =
