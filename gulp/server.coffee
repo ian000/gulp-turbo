@@ -29,20 +29,21 @@ gulp.task 'server', ()->
               method = req.method
               filenameOrign = urlObj.pathname
 
+              util.log 'request-->:'+req.url
+
               #skip favicon.ico
               if req.url.search /favicon\.ico$/ >-1
                 next()
-                return
-
+                
               #replace to file path
               disk_path = base + req.url.replace routerPath, '/'+distPath+'/'
               stats = fs.statSync disk_path
 
               # mock
-              filename = approot+'/mock'+urlObj.pathname+'.json'
-              if fs.existsSync filename
+              mockfile = approot+'/mock'+urlObj.pathname+'.json'
+              if fs.existsSync mockfile
                 res.setHeader('Content-Type', 'application/json')
-                res.end fs.readFileSync filename
+                res.end fs.readFileSync mockfile
                 return
 
               # if is a file
