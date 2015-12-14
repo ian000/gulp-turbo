@@ -28,6 +28,12 @@ gulp.task 'server', ()->
               urlObj = url.parse(req.url, true)
               method = req.method
               filenameOrign = urlObj.pathname
+
+              #skip favicon.ico
+              if req.url.search /favicon\.ico$/ >-1
+                next()
+                return
+
               #replace to file path
               disk_path = base + req.url.replace routerPath, '/'+distPath+'/'
               stats = fs.statSync disk_path
