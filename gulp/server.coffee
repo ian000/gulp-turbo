@@ -70,5 +70,5 @@ gulp.task 'server', ()->
                   if (!error && response.statusCode == 200)
                     next(body)
         .pipe through.obj (file, enc, cb)->
-          console.log 'running...'
+          util.log chalk.magenta 'running at '+wwwroot
           cb()
