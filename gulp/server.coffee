@@ -25,19 +25,22 @@ gulp.task 'server', ()->
               path:distPath
 
             middleware: (req, res, next)->
+
+              #replace to file path
+              disk_path = path.normalize base+req.url.replace(routerPath, '/'+distPath+'/')
+
+              console.log 'disk_path',disk_path
+
               urlObj = url.parse(req.url, true)
               method = req.method
               filenameOrign = urlObj.pathname
 
-              util.log 'request-->:'+req.url
+              util.log 'request-->'+req.url
 
-              #skip favicon.ico
-              if req.url.search /favicon\.ico$/ >-1
-                next()
-                
-              #replace to file path
-              disk_path = base + req.url.replace routerPath, '/'+distPath+'/'
               stats = fs.statSync disk_path
+              console.log 'routerPath',routerPath
+              console.log 'distPath',distPath
+              console.log 'disk_path',disk_path
 
               # mock
               mockfile = approot+'/mock'+urlObj.pathname+'.json'
@@ -64,7 +67,9 @@ gulp.task 'server', ()->
                     next(_data)
                   else
                     next()
-
+              #skip favicon.ico
+              if req.url.search /favicon\.ico$/ >-1
+                next()
             fallback : ()->
               util.log 'fallback', arguments
               request vhost+req.url, (error, response, body)->
