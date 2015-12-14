@@ -26,21 +26,13 @@ gulp.task 'server', ()->
 
             middleware: (req, res, next)->
 
-              #replace to file path
-              disk_path = path.normalize base+req.url.replace(routerPath, '/'+distPath+'/')
-
-              console.log 'disk_path',disk_path
-
-              urlObj = url.parse(req.url, true)
-              method = req.method
-              filenameOrign = urlObj.pathname
-
               util.log 'request-->'+req.url
 
-              stats = fs.statSync disk_path
-              console.log 'routerPath',routerPath
-              console.log 'distPath',distPath
-              console.log 'disk_path',disk_path
+              #replace to file path
+              disk_path     = path.normalize base+req.url.replace(routerPath, '/'+distPath+'/')
+              stats         = fs.statSync disk_path
+              urlObj        = url.parse(req.url, true)
+              method        = req.method
 
               # mock
               mockfile = approot+'/mock'+urlObj.pathname+'.json'
