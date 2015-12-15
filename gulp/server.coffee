@@ -31,8 +31,7 @@ gulp.task 'server', ()->
               util.log 'request-->'+req.url
 
               #replace to file path
-              disk_path     = path.normalize base+req.url.replace(routerPath, '/'+distPath+'/').replace(/(\?.*)$/,'')
-
+              disk_path     = url.parse( path.normalize(base+req.url.replace(routerPath, '/'+distPath+'/')) ).pathname
               urlObj        = url.parse(req.url, true)
               method        = req.method
 
@@ -55,14 +54,14 @@ gulp.task 'server', ()->
                 fs.readdirSync disk_path
                 next()
                 return
-              catch err
-
-                # vhost
-                request vhost+req.url, (error, response, body)->
-                  if (!error && response.statusCode == 200)
-                    next(_data)
-                  else
-                    next()
+              # catch err
+              #
+              #   # vhost
+              #   request vhost+req.url, (error, response, body)->
+              #     if (!error && response.statusCode == 200)
+              #       next(_data)
+              #     else
+              #       next()
               #skip favicon.ico
               if req.url.search /favicon\.ico$/ >-1
                 next()
