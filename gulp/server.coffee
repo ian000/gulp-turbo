@@ -19,7 +19,7 @@ gulp.task 'server', ()->
         .pipe webserver
             livereload       : forceLivereload
             host             : '0.0.0.0'
-            path             : path.normalize '/'+routerPath
+            path             : routerPath
             port             : pkg.httpPort
             proxies          : pkg.serverProxies
             directoryListing :
@@ -54,14 +54,15 @@ gulp.task 'server', ()->
                 fs.readdirSync disk_path
                 next()
                 return
-              # catch err
-              #
-              #   # vhost
-              #   request vhost+req.url, (error, response, body)->
-              #     if (!error && response.statusCode == 200)
-              #       next(_data)
-              #     else
-              #       next()
+              catch err
+
+                # vhost
+                request vhost+req.url, (error, response, body)->
+                  if (!error && response.statusCode == 200)
+                    next(_data)
+                  else
+                    next()
+
               #skip favicon.ico
               if req.url.search /favicon\.ico$/ >-1
                 next()
