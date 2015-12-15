@@ -31,7 +31,8 @@ gulp.task 'server', ()->
               util.log 'request-->'+req.url
 
               #replace to file path
-              disk_path     = path.normalize base+req.url.replace(routerPath, '/'+distPath+'/')
+              disk_path     = path.normalize base+req.url.replace(routerPath, '/'+distPath+'/').replace(/(\?.*)$/,'')
+
               urlObj        = url.parse(req.url, true)
               method        = req.method
 
