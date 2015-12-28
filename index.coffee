@@ -18,8 +18,6 @@ wwwroot    = path.join(domain,routerPath)
 			 #replace first / 
 			 .replace /^\/*||''/,'//'
 
-console.log 'wwwroot',wwwroot
-
 #extends project config
 extconf =
     base     : path.resolve approot,'../'
