@@ -57,11 +57,13 @@ gulp.task 'server', ()->
               catch err
 
                 # vhost
-                request vhost+req.url, (error, response, body)->
-                  if (!error && response.statusCode == 200)
-                    next(_data)
-                  else
-                    next()
+                # request vhost+req.url, (error, response, body)->
+                #   if (!error && response.statusCode == 200)
+                #     next()
+                #   else
+                
+                next()
+                return
 
               #skip favicon.ico
               if req.url.search /favicon\.ico$/ >-1
