@@ -58,4 +58,4 @@ gulp.task '_buildLoder', ()->
 
 # coffee
 gulp.task 'coffee', (cb)->
-  sequence 'clean:dev-js-entry', '_cpJs', '_coffee', '_addRequireConf', '_buildLoder', 'clean:dev-loderAndConf', cb
+  sequence '_cpJs', '_coffee', '_addRequireConf', '_buildLoder', 'clean:dev-loderAndConf', cb
