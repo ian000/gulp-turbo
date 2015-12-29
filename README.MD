@@ -202,31 +202,33 @@ gulp dist
 
 #### change log
 
+    [12.29] - 新增静态资源加载器（js部分）
+            - 新增entry文件夹，支持子目录
+            - 抽离了require配置文件
     [12.11] - 优化dist模式，js压缩时添加md5变更匹配
-    [12.11] - 新加tasks任务，展示可用任务信息；gulp默认default任务改为dev
-    [12.11] - 解决dist模式下watch不能实时压缩的问题；引入coffee-script，使用时需要再coffee register
+            - 新加tasks任务，展示可用任务信息；gulp默认default任务改为dev
+            - 解决dist模式下watch不能实时压缩的问题；引入coffee-script，使用时需要再coffee register
     [12.10] - 优化gulpfile,减少依赖，使用更方便，直接引入便可
     [12.03] -【里程碑】将脚手架包装成npm组件
-    [12.03] - 加入json文件校验
-    [12.03] - 为解决gulpfile.coffe以后的维护问题，拆分gulpfile.coffe到gulp文件夹
-    [12.03] - 压缩css、js时，添加处理文件的log信息输出
+            - 加入json文件校验
+            - 为解决gulpfile.coffe以后的维护问题，拆分gulpfile.coffe到gulp文件夹
+            - 压缩css、js时，添加处理文件的log信息输出
     [12.02] - 在gulp dist之前不需要先执行gulp dev了
     [11.16] - svnChanges任务修改，过滤掉文件夹和删除的变更记录
     [11.12] - 提供80端口代理、转发功能
-    [11.12] - 新增svnChanges任务，获取svn log中的change list, 以便用于填写上线单
+            - 新增svnChanges任务，获取svn log中的change list, 以便用于填写上线单
     [11.10] - 在dist模式下，增加sourcemaps支持
     [11.09] - 抽离配置文件到package.json中
     [11.06] - 新增图片文件夹
-    [11.06] - 支持透明代理
-    [11.06] - 支持代理
+            - 支持透明代理
+            - 支持代理
     [11.05] - 修复dist模式
     [11.04] - 新增page_$config.json
-    [11.04] - 自动配置页面内的wwwroot
+            - 自动配置页面内的wwwroot
+
 
 #### TODOS
   1. 将资源合并，构建组件化机制。
-  1. dist文件夹内文件统一添加版本号问题
-  1. 服务挂载
 
 #### Contributors
 <img src="https://avatars3.githubusercontent.com/u/3196171?v=3&s=40">  [赵新](https://github.com/ian000)  
