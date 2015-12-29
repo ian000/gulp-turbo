@@ -39,4 +39,3 @@ gulp.task 'watch',[],()->
     dist_watcher = gulp.watch [approot + '/dev/**/*.js'], (event)->
       util.log chalk.green('[File change] ') + event.path + ' was ' + event.type + ', running rMin tasks...'
       rMinFn()
-    # dist_watcher.on 'change', (event)->

@@ -1,7 +1,6 @@
 gulp     = require 'gulp'
 fs       = require 'fs'
 util     = require 'gulp-util'
-fs       = require 'fs'
 argv     = require('yargs').argv
 execSync = require('child_process').execSync
 

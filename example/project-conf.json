@@ -1,5 +1,5 @@
 {
-  "routerPath": "/tech-bs",
+  "routerPath": "/tech-bs/",
   "approot": "app",
   "distMode": "dev",
   "domain": "//xxx.bbb.com",

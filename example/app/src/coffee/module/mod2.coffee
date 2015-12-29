@@ -1,2 +1,2 @@
-require ['jade'], ()->
+require ()->
 	return 222
