@@ -30,7 +30,7 @@ gulp.task '_addRequireConf', ()->
   requireConfPath = approot + '/dev/js/require-conf.js'
 
   if fs.existsSync requireConfPath
-    gulp.src [approot + '/dev/js/entry/**/*.js', '!'+approot+'/dev/js/entry/**/*-loder.js']
+    gulp.src [approot + '/dev/js/entry/**/*.js', '!'+approot+'/dev/js/entry/**/*_loder.js']
       .pipe through.obj (file, enc, cb)->
           requireConf = fs.readFileSync requireConfPath, 'utf8'
           contents = requireConf + '\n' + file.contents.toString()
@@ -46,14 +46,14 @@ gulp.task '_buildLoder', ()->
   loderPath = approot + '/dev/js/loder.js'
   
   if fs.existsSync loderPath
-    gulp.src [approot + '/dev/js/entry/**/*.js', '!'+approot+'/dev/js/entry/**/*-loder.js']
+    gulp.src [approot + '/dev/js/entry/**/*.js', '!'+approot+'/dev/js/entry/**/*_loder.js']
       .pipe through.obj (file, enc, cb)->
           loderCon = fs.readFileSync loderPath, 'utf8'
           file.contents = new Buffer loderCon
           this.push file
           cb()
       .pipe rename (path)->
-        path.basename += '-loder'
+        path.basename += '_loder'
       .pipe gulp.dest approot+'/dev/js/entry/'
 
 # coffee

@@ -14,7 +14,7 @@ gulp.task '_rMainMin', ()->
   pkg = global.pkg
   {approot,distPath} = pkg
 
-  gulp.src [approot+'/dev/js/*.js', approot+'/dev/js/entry/**/*.js', '!'+approot+'/dev/js/entry/**/*-loder.js'],
+  gulp.src [approot+'/dev/js/*.js', approot+'/dev/js/entry/**/*.js', '!'+approot+'/dev/js/entry/**/*_loder.js'],
       read: false
     .pipe rjs
       base: approot+'/dev/js/'
@@ -25,11 +25,11 @@ gulp.task '_loderMin', ()->
   pkg = global.pkg
   {approot,distPath} = pkg
 
-  gulp.src [approot+'/dev/js/entry/**/*-loder.js']
+  gulp.src [approot+'/dev/js/entry/**/*_loder.js']
     .pipe through.obj (file, enc, cb)->
       # 获取main文件js位置相对路径，然后从cache中得到最新的MD5值，替换loder中的js version
       mainFilePath = path.relative approot + '/dev/js/', file.path
-      mainFilePath = mainFilePath.replace(/(\-loder)\.js$/, '.js')
+      mainFilePath = mainFilePath.replace(/(\_loder)\.js$/, '.js')
       contsMD5 = rjs_cache[mainFilePath]
       loderCon = file.contents.toString()
       loderCon = loderCon.replace /\[mainJsVersion\]/g, contsMD5
