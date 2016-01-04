@@ -30,11 +30,5 @@ extconf =
 global.pkg = _.assign defaultConf, extconf
 
 requireDir './gulp'
-
-if global.pkg.gulpExt
-	try
-		requireDir global.pkg.gulpExt
-	catch e
-		util.log chalk.bgRed 'gulpExt error: ' + e.message
 	
 

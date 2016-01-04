@@ -1,6 +1,5 @@
 [01.04] - 减掉$CONFIG需要指定entryPath的配置，修改页面loder伴生文件的引用，入口文件将由页面引用的loder伴生文件名决定。
         - 去掉dist模式时的livereload
-        - 配置文件增加gulpExt设置，指定一个gulp扩展任务目录
 
 [2015~]
 [12.29] - 新增静态资源加载器（js部分）
