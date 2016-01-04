@@ -14,6 +14,11 @@ forceLivereload = if typeof(pkg.forceLivereload != 'undefined') then !!pkg.force
 gulp.task 'server', ()->
     util.log 'approot',pkg.approot
     {base,approot,vhost,routerPath,distPath,wwwroot} = pkg
+
+    # dist
+    if pkg.distMode is 'dist'
+      forceLivereload = false
+
     util.log 'current webroot:',distPath
     gulp.src distPath
         .pipe webserver

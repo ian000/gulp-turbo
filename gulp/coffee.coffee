@@ -5,6 +5,7 @@ coffee     = require 'gulp-coffee'
 through    = require 'through2'
 sequence   = require 'gulp-sequence'
 rename     = require 'gulp-rename'
+path       = require 'path'
 
 #支持不熟悉coffee的同学直接写js
 gulp.task '_cpJs', ()->
@@ -49,6 +50,8 @@ gulp.task '_buildLoder', ()->
     gulp.src [approot + '/dev/js/entry/**/*.js', '!'+approot+'/dev/js/entry/**/*_loder.js']
       .pipe through.obj (file, enc, cb)->
           loderCon = fs.readFileSync loderPath, 'utf8'
+          filename = path.basename file.path, '.js'
+          loderCon = loderCon.replace /\[entryPath\]/g, filename
           file.contents = new Buffer loderCon
           this.push file
           cb()

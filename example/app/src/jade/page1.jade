@@ -8,5 +8,10 @@ block head
 block body
 block footer
 	//- script(data-main="#{wwwroot}/js/page1" src="../vender/require.js")
-	script.
-		document.write('<script src="'+ wwwroot + '/js/entry/' + $CONFIG.entryPath +'_loder.js?_t=' + new Date().getTime() +'">\<\/script>');
+	//- script.
+	//- 	document.write('<script src="'+ wwwroot + '/js/entry/' + $CONFIG.entryPath +'_loder.js?_t=' + new Date().getTime() +'">\<\/script>');
+	.hide.script-box
+		base
+		script.
+			//- page1_loder.js 为入口文件page1的伴生文件
+			document.write('<script role="loder" src="'+ wwwroot + '/js/entry/page1_loder.js?_t=' + new Date().getTime() +'"><\/script>');

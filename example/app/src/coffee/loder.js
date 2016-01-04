@@ -1,4 +1,6 @@
 (function (window, undefined){
+	// var wwwroot = 'http://xxx.bbb.com/tech-bs/';
+	var entryPath = '[entryPath]';
 	var conf = {
 		js: {
 			version: "[mainJsVersion]"
@@ -12,9 +14,9 @@
 	};
 
 	// js
-	if($CONFIG.entryPath){
+	if(entryPath){
 		var requirejs = wwwroot + "/vender/require.js";
-		var pagejsUrl = wwwroot + '/js/entry/' + $CONFIG.entryPath + '.js?_v=' + conf.js.version;
+		var pagejsUrl = wwwroot + '/js/entry/' + entryPath + '.js?_v=' + conf.js.version;
 		loadScript(requirejs, {'data-main': pagejsUrl});
 	}
 

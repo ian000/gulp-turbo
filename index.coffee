@@ -1,6 +1,7 @@
 _    = require 'lodash'
 path = require 'path'
 util = require 'gulp-util'
+chalk = require 'chalk'
 requireDir = require 'require-dir'
 defaultConf = require path.join(process.cwd(), './project-conf.json')
 
@@ -18,7 +19,7 @@ wwwroot    = (domain+routerPath.replace(/^\/\//,'/'))
 			 #replace first / 
 			 .replace /^\/*||''/,'//'
 
-console.log 'wwwroot',wwwroot
+util.log chalk.bgGreen 'wwwroot',wwwroot
 
 #extends project config
 extconf =
@@ -29,3 +30,11 @@ extconf =
 global.pkg = _.assign defaultConf, extconf
 
 requireDir './gulp'
+
+if global.pkg.gulpExt
+	try
+		requireDir global.pkg.gulpExt
+	catch e
+		util.log chalk.bgRed 'gulpExt error: ' + e.message
+	
+
