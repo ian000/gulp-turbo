@@ -1,0 +1,15 @@
+extends layout/main
+
+block head
+	title turbo demo
+	script.
+		var $CONFIG = !{JSON.stringify($CONFIG)};
+		var wwwroot = "!{wwwroot}";
+block body
+block footer
+	.hide.script-box
+		base
+		script.
+			//- loder_demo_loder.js 为入口文件loder_demo的伴生文件
+			document.write('<script role="loder" src="'+ wwwroot + '/js/entry/loder_demo_loder.js?_t=' + new Date().getTime() +'"><\/script>');
+ 

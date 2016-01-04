@@ -1,0 +1,13 @@
+extends layout/main
+
+block head
+	title turbo demo
+	script.
+		var $CONFIG = !{JSON.stringify($CONFIG)};
+		var wwwroot = "!{wwwroot}";
+block body
+block footer
+	script(data-main="#{wwwroot}/js/demo" src="../vender/require.js")
+
+
+	
