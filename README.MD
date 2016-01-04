@@ -202,6 +202,11 @@ gulp dist
 
 #### change log
 
+    [01.04] - 减掉$CONFIG需要指定entryPath的配置，修改页面loder伴生文件的引用，入口文件将由页面引用的loder伴生文件名决定。
+            - 去掉dist模式时的livereload
+            - 配置文件增加gulpExt设置，指定一个gulp扩展任务目录
+    
+    [2015~]
     [12.29] - 新增静态资源加载器（js部分）
             - 新增entry文件夹，支持子目录
             - 抽离了require配置文件
@@ -225,7 +230,6 @@ gulp dist
     [11.05] - 修复dist模式
     [11.04] - 新增page_$config.json
             - 自动配置页面内的wwwroot
-
 
 #### TODOS
   1. 将资源合并，构建组件化机制。
