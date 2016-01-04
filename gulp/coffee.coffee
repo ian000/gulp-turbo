@@ -31,9 +31,11 @@ gulp.task '_addRequireConf', ()->
   requireConfPath = approot + '/dev/js/require-conf.js'
 
   if fs.existsSync requireConfPath
+    requireConf = fs.readFileSync requireConfPath, 'utf8'
+    requireConf = requireConf.replace /\[wwwroot\]/g, global.pkg.wwwroot
+    
     gulp.src [approot + '/dev/js/entry/**/*.js', '!'+approot+'/dev/js/entry/**/*_loder.js']
       .pipe through.obj (file, enc, cb)->
-          requireConf = fs.readFileSync requireConfPath, 'utf8'
           contents = requireConf + '\n' + file.contents.toString()
           file.contents = new Buffer contents
           this.push file
