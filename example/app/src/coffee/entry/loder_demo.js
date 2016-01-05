@@ -37,6 +37,6 @@ require([
 		appdBody($CONFIG);
 
 		//init
-		initMods();
+		initMods.apply(null, arguments);
 
 	});
