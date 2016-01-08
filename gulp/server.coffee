@@ -3,12 +3,14 @@ pkg             = global.pkg
 util            = require 'gulp-util'
 fs              = require 'fs'
 url             = require 'url'
-request         = require 'request'
 path            = require 'path'
 webserver       = require 'gulp-webserver'
 chalk           = require 'chalk'
 through         = require 'through2'
 forceLivereload = if typeof(pkg.forceLivereload != 'undefined') then !!pkg.forceLivereload else distMode=='dev'
+request         = require('http').request
+
+
 
 # webserver
 gulp.task 'server', ()->
@@ -33,7 +35,7 @@ gulp.task 'server', ()->
 
             middleware: (req, res, next)->
 
-              util.log 'request-->'+req.url
+              util.log 'request1-->'+req.url
 
               #replace to file path
               disk_path     = url.parse( path.normalize(base+req.url.replace(routerPath, '/'+distPath+'/')) ).pathname
@@ -54,6 +56,7 @@ gulp.task 'server', ()->
                   res.end fs.readFileSync disk_path
                   return
 
+              
               #if local not found
               try
                 fs.readdirSync disk_path
@@ -61,18 +64,31 @@ gulp.task 'server', ()->
                 return
               catch err
 
+                proxyURL = vhost+req.url
+                util.log chalk.magenta '本地不存在'+req.url+'，请求远程透明代理替换请求 : '+proxyURL
                 # vhost
-                # request vhost+req.url, (error, response, body)->
-                #   if (!error && response.statusCode == 200)
-                #     next()
-                #   else
+                myReq = request proxyURL, (myRes)->
+                  {statusCode,headers} = myRes
+                  res.writeHead(myRes.statusCode, myRes.headers)
+                  myRes.on 'error', (err)->
+                    next(err)
+                  myRes.pipe(res)
+
+                myReq.on 'error', (err)->
+                  next err
                 
-                next()
-                return
+                if !req.readable
+
+                  myReq.end()
+                  return
+                else
+                  req.pipe myReq
+                  return
 
               #skip favicon.ico
               if req.url.search /favicon\.ico$/ >-1
                 next()
+
             fallback : ()->
               util.log 'fallback', arguments
               request vhost+req.url, (error, response, body)->
