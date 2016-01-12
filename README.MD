@@ -201,6 +201,7 @@ gulp dist
 
 
 #### change log
+    [01.12] - 添加静态资源管理css、image部分支持
     [01.08] - 修复透明代理
     [01.04] - 减掉$CONFIG需要指定entryPath的配置，修改页面loder伴生文件的引用，入口文件将由页面引用的loder伴生文件名决定。
             - 去掉dist模式时的livereload

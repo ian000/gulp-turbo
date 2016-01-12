@@ -8,6 +8,7 @@ uglify     = require 'gulp-uglify'
 path       = require 'path'
 md5        = require 'md5'
 sequence   = require 'gulp-sequence'
+folderMd5  = require '../lib/folderMd5'
 
 # 兼容老版本 合并压缩entry目录下的main JS
 gulp.task '_rMainMin', ()->
@@ -30,9 +31,13 @@ gulp.task '_loderMin', ()->
       # 获取main文件js位置相对路径，然后从cache中得到最新的MD5值，替换loder中的js version
       mainFilePath = path.relative approot + '/dev/js/', file.path
       mainFilePath = mainFilePath.replace(/(\_loder)\.js$/, '.js')
-      contsMD5 = rjs_cache[mainFilePath]
+      contsMD5 = rjs_cache[mainFilePath] || '0'
+      cssFolderMd5 = folderMd5(approot + '/dist/css/') || '0'
+      imageFolderMd5 = folderMd5(approot + '/dist/img/') || '0'
       loderCon = file.contents.toString()
-      loderCon = loderCon.replace /\[mainJsVersion\]/g, contsMD5
+      loderCon = loderCon.replace(/\[mainJsVersion\]/g, contsMD5)
+                         .replace(/\[mainCssVersion\]/g, cssFolderMd5)
+                         .replace(/\[mainImageVersion\]/g, imageFolderMd5)
       file.contents = new Buffer loderCon
 
       # 判断loder文件是否变更，变更则进行压缩
