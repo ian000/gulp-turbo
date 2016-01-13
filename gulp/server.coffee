@@ -8,7 +8,7 @@ webserver       = require 'gulp-webserver'
 chalk           = require 'chalk'
 through         = require 'through2'
 forceLivereload = if typeof(pkg.forceLivereload != 'undefined') then !!pkg.forceLivereload else distMode=='dev'
-request         = require('http').request
+
 
 
 
@@ -34,8 +34,11 @@ gulp.task 'server', ()->
               path:distPath
 
             middleware: (req, res, next)->
+              urlObj    = url.parse(req.url, true)
+              urlObj.protocol or= 'http'
+              orginUrl = urlObj.protocol+wwwroot+req.url
 
-              util.log 'request1-->'+req.url
+              util.log 'Received request-->'+orginUrl
 
               #replace to file path
               disk_path     = url.parse( path.normalize(base+req.url.replace(routerPath, '/'+distPath+'/')) ).pathname
@@ -63,13 +66,20 @@ gulp.task 'server', ()->
                 next()
                 return
               catch err
+                proxyURL  = vhost+req.url
+                oProxyURL = url.parse proxyURL, true
+                oProxyURL.protocol or= 'http'
+                httpLib  = oProxyURL.protocol.replace(/\:/,'')
+                request  = require(httpLib).request
 
-                proxyURL = vhost+req.url
-                util.log chalk.magenta '本地不存在'+req.url+'，请求远程透明代理替换请求 : '+proxyURL
+                #make proxy url
+                proxyURL = httpLib+'://'+proxyURL.replace(/^.*\/\/(.*)$/, '$1') 
+                util.log chalk.magenta '访问本地失败，启用透明代理 : '+proxyURL
+                
                 # vhost
                 myReq = request proxyURL, (myRes)->
                   {statusCode,headers} = myRes
-                  res.writeHead(myRes.statusCode, myRes.headers)
+                  res.writeHead(myRes.statusCode, myRes.headers, myRes.host)
                   myRes.on 'error', (err)->
                     next(err)
                   myRes.pipe(res)
