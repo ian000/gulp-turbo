@@ -1,4 +1,5 @@
 gulp       = require 'gulp'
+fs         = require 'fs'
 chalk      = require 'chalk'
 util       = require 'gulp-util'
 requirejs  = require 'gulp-requirejs'
@@ -7,65 +8,22 @@ through    = require 'through2'
 uglify     = require 'gulp-uglify'
 path       = require 'path'
 md5        = require 'md5'
-sequence   = require 'gulp-sequence'
-folderMd5  = require '../lib/folderMd5'
+turboCache = require '../lib/turboCache'
+mkdirSync  = require '../lib/mkdirSync'
 
+rjs_cache = {}
 # 兼容老版本 合并压缩entry目录下的main JS
-gulp.task '_rMainMin', ()->
+gulp.task 'rMin', ()->
   pkg = global.pkg
   {approot,distPath} = pkg
+  
+  rjs_cache = turboCache pkg.base
 
   gulp.src [approot+'/dev/js/*.js', approot+'/dev/js/entry/**/*.js', '!'+approot+'/dev/js/entry/**/*_loder.js'],
       read: false
     .pipe rjs
       base: approot+'/dev/js/'
       dest: approot+'/dist/js/'
-
-# 压缩page loder
-gulp.task '_loderMin', ()->
-  pkg = global.pkg
-  {approot,distPath} = pkg
-
-  cssFolderMd5 = folderMd5(approot + '/dist/css/') || '0'
-  imageFolderMd5 = folderMd5(approot + '/dist/img/') || '0'
-  util.log chalk.yellow 'css folder version: ', cssFolderMd5
-  util.log chalk.yellow 'images folder version: ', imageFolderMd5
-  gulp.src [approot+'/dev/js/entry/**/*_loder.js']
-    .pipe through.obj (file, enc, cb)->
-      # 获取main文件js位置相对路径，然后从cache中得到最新的MD5值，替换loder中的js version
-      mainFilePath = path.relative approot + '/dev/js/', file.path
-      mainFilePath = mainFilePath.replace(/(\_loder)\.js$/, '.js')
-      contsMD5 = rjs_cache[mainFilePath] || '0'
-      loderCon = file.contents.toString()
-      loderCon = loderCon.replace(/\[mainJsVersion\]/g, contsMD5)
-                         .replace(/\[mainCssVersion\]/g, cssFolderMd5)
-                         .replace(/\[mainImageVersion\]/g, imageFolderMd5)
-      file.contents = new Buffer loderCon
-
-      # 判断loder文件是否变更，变更则进行压缩
-      fileMd5 = md5 file.contents
-      if rjs_cache[file.path] isnt fileMd5
-        util.log chalk.yellow mainFilePath, ' version: ', contsMD5
-        rjs_cache[file.path] = fileMd5
-        this.push file
-      cb()
-    .pipe sourcemaps.init()
-    .pipe uglify
-      output:
-        beautify: false
-        indent_level: 1
-    .pipe through.obj (file, enc, cb)->
-      util.log chalk.magenta 'compress ', path.relative(approot+'/dev/js/', file.path), ' --> ', file.contents.length, 'bytes'
-      this.push file
-      cb()
-    .pipe sourcemaps.write '.maps'
-    .pipe gulp.dest approot+'/dist/js/entry/'
-
-#requirejs min
-gulp.task 'rMin', (cb)->
-  sequence '_rMainMin', '_loderMin', cb
-
-rjs_cache = {}
 
 rjs = ( opts ) ->
   through.obj ( file, enc, cb ) ->
@@ -79,6 +37,7 @@ rjs = ( opts ) ->
     name = if relativePath then relativePath + '/' + filename else filename
     out = fname
     dist = opts.dest + relativePath
+    fileMd5 = null
     # console.log mainConfigFile, name, out, dist
     requirejs
       baseUrl: opts.base
@@ -93,8 +52,13 @@ rjs = ( opts ) ->
       findNestedDependencies: true
     .pipe through.obj (file, enc, cb)->
       fileMd5 = md5 file.contents
-      if rjs_cache[filepath] isnt fileMd5
-        rjs_cache[filepath] = fileMd5
+      result = rjs_cache.getFile fileMd5
+      if result
+        _filepath = path.join(opts.dest, filepath)
+        mkdirSync path.dirname(_filepath)
+        util.log '[js turboCache]: ', filepath, ' [', fileMd5, ']'
+        fs.writeFileSync _filepath, result
+      else
         this.push file
         cb()
     .pipe sourcemaps.init()
@@ -103,7 +67,8 @@ rjs = ( opts ) ->
         beautify: false
         indent_level: 1
     .pipe through.obj (file, enc, cb)->
-      util.log chalk.magenta 'compress ', filepath, ' --> ', file.contents.length, 'bytes'
+      util.log chalk.magenta '[js compress] ', filepath, ' --> ', file.contents.length, 'bytes [', fileMd5, ']'
+      rjs_cache.setFile file.contents, fileMd5, filepath
       this.push file
       cb()
     .pipe sourcemaps.write '.maps'

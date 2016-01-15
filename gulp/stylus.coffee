@@ -19,7 +19,7 @@ gulp.task 'stylus', ()->
     .pipe stylus
             compress: isCompress
     .pipe through.obj (file, enc, cb)->
-        util.log chalk.magenta('compress ', path.basename(file.path), ' --> ', file.contents.length, 'bytes')
+        util.log chalk.cyan('[stylus compress] ', path.relative(approot + '/src/stylus/', file.path), ' --> ', file.contents.length, 'bytes')
         this.push file
         cb()
     .pipe sourcemaps.write '.maps'
