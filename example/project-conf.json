@@ -1,22 +1,22 @@
 {
-  "routerPath": "/tech-bs/",
+  "routerPath": "/",
   "approot": "app",
   "distMode": "dev",
-  "domain": "//xxx.bbb.com",
-  "vhost": "http://xxx.aaa.com.cn",
+  "domain": "static.xxxx.com",
+  "vhost": "static-am.xiaojukejixxxxxxxxx.com",
   "forceLivereload": true,
   "httpPort": 80,
   "serverProxies": [{
-    "source": "/tech-bs/abc",
-    "target": "http://127.0.0.1:8080/tech-bs/abc",
+    "source": "/tech-bs/mis",
+    "target": "http://static-am.xiaojukeji.com/tech-bs/mis",
     "options": {
       "headers": {
         "ABC_HEADER": "abc"
       }
     }
   }, {
-    "source": "/tech-bs/aaa",
-    "target": "http://127.0.0.1:8081/tech-bs/aaa"
+    "source": "/tech-bs/mis",
+    "target": "http://static-am.xiaojukeji.com/tech-bs/mis"
   }],
   "proxyPort": 8989,
   "proxyRule": [{

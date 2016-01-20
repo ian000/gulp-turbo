@@ -66,6 +66,9 @@ gulp.task 'server', ()->
                 next()
                 return
               catch err
+                if !vhost
+                  next()
+                  return
                 proxyURL  = vhost+req.url
                 oProxyURL = url.parse proxyURL, true
                 oProxyURL.protocol or= 'http'
@@ -81,18 +84,18 @@ gulp.task 'server', ()->
                   {statusCode,headers} = myRes
                   res.writeHead(myRes.statusCode, myRes.headers, myRes.host)
                   myRes.on 'error', (err)->
-                    next(err)
-                  myRes.pipe(res)
+                    next err
+                  myRes.pipe res
 
                 myReq.on 'error', (err)->
-                  next err
+                  next()
                 
                 if !req.readable
-
                   myReq.end()
                   return
                 else
                   req.pipe myReq
+                  next()
                   return
 
               #skip favicon.ico
