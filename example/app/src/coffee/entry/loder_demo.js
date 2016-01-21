@@ -17,7 +17,7 @@ require([
         	o.innerHTML = tpl(data)
         	document.body.appendChild(o)	
 		}
-		console.log(333)
+		
 
 		/**
 		 * 按依赖顺序执行模块的init方法。
