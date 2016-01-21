@@ -3,24 +3,16 @@
   "approot": "app",
   "distMode": "dev",
   "domain": "static.xxxx.com",
-  "vhost": "static-am.xiaojukejixxxxxxxxx.com",
+  "vhost":"vhost.xxxx.com",
   "forceLivereload": true,
   "httpPort": 80,
   "serverProxies": [{
-    "source": "/tech-bs/mis",
-    "target": "http://static-am.xiaojukeji.com/tech-bs/mis",
-    "options": {
-      "headers": {
-        "ABC_HEADER": "abc"
-      }
-    }
-  }, {
-    "source": "/tech-bs/mis",
-    "target": "http://static-am.xiaojukeji.com/tech-bs/mis"
+    "source": "/tech-bs",
+    "target": "http://127.0.0.1:8001/tech-bs"
   }],
   "proxyPort": 8989,
   "proxyRule": [{
-    "pattern": "xxx.b.com/skyfire/ssu/editBefore1",
-    "responder": "/Users/kings/didi/prod/fe-scaffold-v1/app/dev/html/page1.html"
+    "pattern": "static3.xxxx.com/skyfire/ssu/editBefore",
+    "responder": "/Users/kings/app/dev/html/page1.html"
   }]
 }

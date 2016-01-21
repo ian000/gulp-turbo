@@ -59,6 +59,12 @@ gulp.task 'server', ()->
                   res.end fs.readFileSync disk_path
                   return
 
+              #skip favicon.ico
+              if req.url.search(/favicon\.ico$/)>-1
+                console.log 'req.url',req.url
+                console.log 'favicon'
+                next()
+                return
               
               #if local not found
               try
@@ -77,36 +83,38 @@ gulp.task 'server', ()->
 
                 #make proxy url
                 proxyURL = httpLib+'://'+proxyURL.replace(/^.*\/\/(.*)$/, '$1') 
-                util.log chalk.magenta '访问本地失败，启用透明代理 : '+proxyURL
+                util.log chalk.magenta '本地资源不存在，触发透明代理 : '+proxyURL
                 
                 # vhost
                 myReq = request proxyURL, (myRes)->
-                  {statusCode,headers} = myRes
-                  res.writeHead(myRes.statusCode, myRes.headers, myRes.host)
+                  {statusCode,headers,host} = myRes
+                  res.writeHead statusCode, headers, host
+                  util.log chalk.magenta 'http code : '+statusCode
                   myRes.on 'error', (err)->
+                    console.log 'err',err
                     next err
                   myRes.pipe res
 
                 myReq.on 'error', (err)->
+                  console.log 'myReq error',err
+                  if err.code is 'ETIMEDOUT'
+                    util.log chalk.magenta '访问超时'
+                  else
+                    console.log 'myReq error',err
                   next()
                 
                 if !req.readable
+                  console.log '!req.readable'
                   myReq.end()
-                  return
-                else
-                  req.pipe myReq
                   next()
-                  return
-
-              #skip favicon.ico
-              if req.url.search /favicon\.ico$/ >-1
-                next()
+                
+                req.pipe myReq
 
             fallback : ()->
               util.log 'fallback', arguments
-              request vhost+req.url, (error, response, body)->
-                  if (!error && response.statusCode == 200)
-                    next(body)
+              # request proxyURL, (error, response, body)->
+              #     if (!error && response.statusCode == 200)
+              #       next(body)
         .pipe through.obj (file, enc, cb)->
           util.log chalk.magenta 'running at '+wwwroot
           cb()
