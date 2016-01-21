@@ -59,7 +59,7 @@ gulp.task 'loderMin', ()->
         indent_level: 1
     .pipe through.obj (file, enc, cb)->
       util.log chalk.magenta '[loder compress] ', path.relative(jsDev, file.path), ' --> ', file.contents.length, 'bytes [', md5s[file.path], ']'
-      loder_cache.setFile file.contents, md5s[file.path], file.path 
+      loder_cache.setFile file.contents, md5s[file.path]
       this.push file
       cb()
     .pipe sourcemaps.write '.maps'

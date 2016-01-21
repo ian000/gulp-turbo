@@ -1,6 +1,7 @@
 gulp   = require 'gulp'
 chalk = require 'chalk'
 util   = require 'gulp-util'
+sequence = require 'gulp-sequence'
 delay   = require '../lib/delay'
 # watcher
 gulp.task 'watch',[],()->
@@ -34,7 +35,9 @@ gulp.task 'watch',[],()->
 
   if distMode=='dist'
     rMinFn = ()->
-      gulp.run 'rMin'
+      # gulp.run 'rMin'
+      sequence 'rMin', 'loderMin', ()->
+        # console.log 'rMinFn'
     rMinFn = delay rMinFn, 800
     dist_watcher = gulp.watch [approot + '/dev/**/*.js'], (event)->
       util.log chalk.green('[File change] ') + event.path + ' was ' + event.type + ', running rMin tasks...'

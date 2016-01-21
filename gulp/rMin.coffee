@@ -58,6 +58,7 @@ rjs = ( opts ) ->
         mkdirSync path.dirname(_filepath)
         util.log '[js turboCache]: ', filepath, ' [', fileMd5, ']'
         fs.writeFileSync _filepath, result
+        rjs_cache.setFile result, fileMd5, filepath
       else
         this.push file
         cb()
