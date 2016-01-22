@@ -32,7 +32,7 @@ gulp.task 'svnChanges', ()->
 
   str = ''
   dataArr = result.split('\n').slice(3,-4).forEach (item)->
-    if /[^\/]+\.\w+\s?$/.test(item)
+    if /[^\/]+\.\w+\s?$/.test(item) && !/\s+D\s+/.test(item)
       str += svnRoot + item.replace(/^[^\/]+(\/.*)\s?$/,'$1')+separate+append+'\n'
   fs.writeFileSync './'+resultFileName, str, {encoding: 'utf8'}
   util.log('*****created change file list: ' + resultFileName + '*****');

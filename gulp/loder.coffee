@@ -33,7 +33,7 @@ gulp.task 'loderMin', ()->
       # 获取main文件js位置相对路径，然后从cache中得到最新的MD5值，替换loder中的js version
       mainFilePath = path.relative jsDev, file.path
       mainFilePath = mainFilePath.replace(/(\_loder)\.js$/, '.js')
-      contsMD5 = loder_cache.getFile(mainFilePath) || '0'
+      contsMD5 = loder_cache.conf[mainFilePath] || '0'
       loderCon = file.contents.toString()
       loderCon = loderCon.replace(/\[mainJsVersion\]/g, contsMD5)
                          .replace(/\[mainCssVersion\]/g, cssFolderMd5)
@@ -42,7 +42,7 @@ gulp.task 'loderMin', ()->
 
       # 判断loder文件是否变更，变更则进行压缩
       fileMd5 = md5 file.contents
-      result = loder_cache.getFile fileMd5
+      result = loder_cache.getFile fileMd5, file.path
       md5s[file.path] = fileMd5
       if result
         _filepath = path.join(jsDist, path.relative(jsDev, file.path))
@@ -57,10 +57,11 @@ gulp.task 'loderMin', ()->
       output:
         beautify: false
         indent_level: 1
+    .pipe sourcemaps.write '.maps'
     .pipe through.obj (file, enc, cb)->
-      util.log chalk.magenta '[loder compress] ', path.relative(jsDev, file.path), ' --> ', file.contents.length, 'bytes [', md5s[file.path], ']'
-      loder_cache.setFile file.contents, md5s[file.path]
+      if !/\.maps/.test(file.path)
+        util.log chalk.magenta '[loder compress] ', path.relative(jsDev, file.path), ' --> ', file.contents.length, 'bytes [', md5s[file.path], ']'
+        loder_cache.setFile file.contents, md5s[file.path], file.path
       this.push file
       cb()
-    .pipe sourcemaps.write '.maps'
     .pipe gulp.dest approot+'/dist/js/entry/'

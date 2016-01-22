@@ -52,13 +52,12 @@ rjs = ( opts ) ->
       findNestedDependencies: true
     .pipe through.obj (file, enc, cb)->
       fileMd5 = md5 file.contents
-      result = rjs_cache.getFile fileMd5
+      result = rjs_cache.getFile fileMd5, filepath
       if result
         _filepath = path.join(opts.dest, filepath)
         mkdirSync path.dirname(_filepath)
         util.log '[js turboCache]: ', filepath, ' [', fileMd5, ']'
         fs.writeFileSync _filepath, result
-        rjs_cache.setFile result, fileMd5, filepath
       else
         this.push file
         cb()
@@ -67,12 +66,13 @@ rjs = ( opts ) ->
       output:
         beautify: false
         indent_level: 1
+    .pipe sourcemaps.write '.maps'
     .pipe through.obj (file, enc, cb)->
-      util.log chalk.magenta '[js compress] ', filepath, ' --> ', file.contents.length, 'bytes [', fileMd5, ']'
-      rjs_cache.setFile file.contents, fileMd5, filepath
+      if !/\.maps/.test(file.path)
+        util.log chalk.magenta '[js compress] ', filepath, ' --> ', file.contents.length, 'bytes [', fileMd5, ']'
+        rjs_cache.setFile file.contents, fileMd5, filepath
       this.push file
       cb()
-    .pipe sourcemaps.write '.maps'
     .pipe gulp.dest dist
     cb()
     return
