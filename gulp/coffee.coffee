@@ -6,6 +6,7 @@ through    = require 'through2'
 sequence   = require 'gulp-sequence'
 rename     = require 'gulp-rename'
 path       = require 'path'
+plumber    = require "gulp-plumber"
 
 #支持不熟悉coffee的同学直接写js
 gulp.task '_cpJs', ()->
@@ -19,9 +20,11 @@ gulp.task '_coffee', ()->
   {approot}  = global.pkg
   
   gulp.src [approot+'/src/coffee/**/*.coffee']
+    .pipe plumber()
     .pipe coffee
             bare: true
           .on 'error', util.log
+    .pipe plumber.stop()
     .pipe gulp.dest approot+'/dev/js'
 
 # 拼装config

@@ -10,6 +10,7 @@ path       = require 'path'
 md5        = require 'md5'
 turboCache = require '../lib/turboCache'
 mkdirSync  = require '../lib/mkdirSync'
+plumber = require "gulp-plumber"
 
 rjs_cache = {}
 # 兼容老版本 合并压缩entry目录下的main JS
@@ -50,6 +51,7 @@ rjs = ( opts ) ->
       inlineText: true
       removeCombined: true
       findNestedDependencies: true
+    .pipe plumber()
     .pipe through.obj (file, enc, cb)->
       fileMd5 = md5 file.contents
       result = rjs_cache.getFile fileMd5, filepath
@@ -73,6 +75,7 @@ rjs = ( opts ) ->
         rjs_cache.setFile file.contents, fileMd5, filepath
       this.push file
       cb()
+    .pipe plumber.stop()
     .pipe gulp.dest dist
     cb()
     return

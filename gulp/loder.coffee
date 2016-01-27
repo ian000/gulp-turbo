@@ -11,6 +11,7 @@ md5        = require 'md5'
 folderMd5  = require '../lib/folderMd5'
 turboCache = require '../lib/turboCache'
 mkdirSync  = require '../lib/mkdirSync'
+plumber = require "gulp-plumber"
 
 # 压缩page loder
 loder_cache = {}
@@ -29,6 +30,7 @@ gulp.task 'loderMin', ()->
   jsDist = path.join approot, '/dist/js/'
   jsDev = path.join approot, '/dev/js/'
   gulp.src [approot+'/dev/js/entry/**/*_loder.js']
+    .pipe plumber()
     .pipe through.obj (file, enc, cb)->
       # 获取main文件js位置相对路径，然后从cache中得到最新的MD5值，替换loder中的js version
       mainFilePath = path.relative jsDev, file.path
@@ -64,4 +66,5 @@ gulp.task 'loderMin', ()->
         loder_cache.setFile file.contents, md5s[file.path], file.path
       this.push file
       cb()
+    .pipe plumber.stop()
     .pipe gulp.dest approot+'/dist/js/entry/'
