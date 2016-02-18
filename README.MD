@@ -10,7 +10,7 @@
 > 1. 提供80端口代理、转发功能（可用于多项目联调）
 > 1. 提供透明代理（即：线下不存在的资源，直接抓取线上，域名在Vhost属性中设置）
 > 1. 便捷的移动端调试（默认开启htpp代理服务，端口8989,可以代替fiddler或charles.）
-> 1. 提供获取svn的change list工具, 以便用于填写上线单
+> 1. 支持https
 
 #### 安装（依赖node.js，npm）
 
@@ -193,6 +193,34 @@ gulp dist
 
 ```
 
+#### 提供透明代理（即：线下不存在的资源，直接抓取线上，域名在Vhost属性中设置）
+
+#### 便捷的移动端调试（默认开启htpp代理服务，端口8989,可以代替fiddler或charles.）
+
+```json 
+// 代理服务器端口。 通常用于调试移动端，抓包，替换请求. 类似fiddler或者charlse
+  "proxyPort": 8989,
+
+  //代理规则(支持正则，可以设置多个规则)
+  "proxyRule": [{
+
+    //替换规则
+    "pattern": "xxx.b.com/skyfire/ssu/editBefore1",
+
+    //用于响应的文件
+    "responder": "/Users/kings/didi/prod/fe-scaffold-v1/app/dev/html/page1.html"
+  }]
+
+``` 
+
+#### 支持https
+
+在https项目里面，静态资源服务就需要支持https。
+
+在turbo里支持https服务很简单。只需要在project-conf.json里面将 https属性设置为ture，重启服务即可。
+
+注意：https默认端口为 443, 由于本地没有https证书，第一次运行，需要在浏览器下点选“信任证书”。如果没有提示，请在浏览器打开静态资源请求，届时会弹出警告，选择信任即可。
+
 #### 问题列表
 
   1. [- 使用turbo，前后端如何联调页面?](https://github.com/ian000/gulp-turbo/wiki/%E4%BD%BF%E7%94%A8turbo%EF%BC%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E5%A6%82%E4%BD%95%E8%81%94%E8%B0%83%E9%A1%B5%E9%9D%A2)
@@ -201,6 +229,7 @@ gulp dist
 
 
 #### change log
+    [02.18] - 支持https
     [01.27] - 修复watch中存在的bug，任务出现错误流中断时，任务不会结束且不能再次触发的问题
     [01.15] - 优化dist执行过去，添加文件缓存，再次执行dist时，未变更文件将直接从文件缓存中提取，加快dist执行时间
     [01.12] - 添加静态资源管理css、image部分支持
