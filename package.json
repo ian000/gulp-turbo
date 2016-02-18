@@ -1,9 +1,9 @@
 {
   "name": "gulp-turbo",
-  "version": "1.0.59",
+  "version": "1.0.60",
   "repository": {
     "type": "git",
-    "url": "git://github.com/DIDI-FE/gulp-turbo.git"
+    "url": "git://github.com/FE-EE/gulp-turbo.git"
   },
   "description": "前端工作流（requirejs/jade/stylus/coffee），完整强缩进工作流，同步异步模板复用，高效率适合初期前端团队",
   "main": "index.js",
@@ -48,9 +48,9 @@
     "gulp": "^3.9.0"
   },
   "bugs": {
-    "url": "https://github.com/ian000/gulp-turbo/issues"
+    "url": "https://github.com/FE-EE/gulp-turbo/issues"
   },
-  "homepage": "https://github.com/ian000/gulp-turbo",
+  "homepage": "https://github.com/FE-EE/gulp-turbo",
   "directories": {
     "example": "example"
   },

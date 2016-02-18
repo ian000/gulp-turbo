@@ -9,9 +9,6 @@ chalk           = require 'chalk'
 through         = require 'through2'
 forceLivereload = if typeof(pkg.forceLivereload != 'undefined') then !!pkg.forceLivereload else distMode=='dev'
 
-
-
-
 # webserver
 gulp.task 'server', ()->
     util.log 'approot',pkg.approot
@@ -21,14 +18,17 @@ gulp.task 'server', ()->
     if pkg.distMode is 'dist'
       forceLivereload = false
 
+    util.log chalk.magenta '本次服务以https模式运行，端口为 : '+pkg.httpsPort if pkg.https 
+
     util.log 'current webroot:',distPath
     gulp.src distPath
         .pipe webserver
             livereload       : forceLivereload
             host             : '0.0.0.0'
             path             : routerPath
-            port             : pkg.httpPort
+            port             : if pkg.https then pkg.httpsPort else pkg.httpPort
             proxies          : pkg.serverProxies
+            https            : pkg.https
             directoryListing :
               enable:true
               path:distPath
